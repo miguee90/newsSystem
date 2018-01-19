@@ -1,0 +1,103 @@
+<header>
+	<ng-include src="'views/includes/headerMenu.ejs'"></ng-include>
+</header>
+<main>
+	<div class="container-fluid">
+		<div class="row" pegaesnoticia>
+			<div class="hidden-sm hidden-xs col-lg-10 col-lg-offset-1 es-noticia">
+				<b>Es Noticia:</b>
+				<ul>
+					<a href="#"><li>{{esNoticia[esNoticia.length-1]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-2]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-3]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-4]}}</li></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--BARRA PROGRAMATICA-->
+	<div class="container-fluid">
+		<div class="row" style="margin-top:10px;" pegabarra>
+			<div class="col-xs-12 col-sm-12 col-lg-10 col-lg-offset-1" style="padding:0px;">
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<div class="col-xs-12 col-sm-12 col-lg-6 da-clic" style="padding:0px;">
+						<p>DA CLICK AQUÍ</p>
+						<p class="sintoniza">SINTONIZANOS</p>
+					</div>
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 principales-prog" ng-style="progPrincipales">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 formula-prog" style="padding:0px;" ng-style="progFormula">
+					</div></a>
+					<a ui-sref="pop"><div class="col-xs-12 col-sm-12 col-lg-6 exa-prog" style="padding:0px;" ng-style="progPop">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="imagen"><div class="col-xs-12 col-sm-12 col-lg-6 imagen-prog" style="padding:0px;" ng-style="progImagen">
+					</div></a>
+					<a ui-sref="hundred"><div class="col-xs-12 col-sm-12 col-lg-6 hundred-prog" style="padding:0px;" ng-style="progHundred">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="kebuena"><div class="col-xs-12 col-sm-12 col-lg-6 kebuena-prog" style="padding:0px;" ng-style="progKebuena">
+					</div></a>
+					<a ui-sref="ViveCanal"><div class="col-xs-12 col-sm-12 col-lg-6 vivecanal-prog" style="padding:0px;" ng-style="progVive">
+					</div></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="col-lg-10 col-lg-offset-1 contenedor">
+			<div class="col-lg-2 indicador">
+				NOTICIEROS
+			</div>
+			<a href="" ng-click="noti('formula')">
+				<div class="col-lg-2 tit-noti">
+					Fórmula de la mañana
+				</div>
+			</a>
+			<a href="" ng-click="noti('reporte')">
+				<div class="col-lg-2 tit-noti">
+					Reporte 100.1
+				</div>
+			</a>
+			<a href="" ng-click="noti('detalle')">
+				<div class="col-lg-2 tit-noti">
+					A detalle
+				</div>
+			</a>
+			<a href="" ng-click="noti('noche')">
+				<div class="col-lg-2 tit-noti">
+					Noticias de la noche
+				</div>
+			</a>
+		</div>
+		<!--CONTENEDOR DE PODCAST Y VIDEOS-->
+		<div class="col-lg-10 col-lg-offset-1 espacio" ng-style="fondo" >
+			<div class="col-lg-4 col-lg-offset-8" style="margin-top:30%;">
+				<h3>PODCAST</h3>
+				<div style="margin-top:20px;" ng-repeat="audio in podcasts">
+					<h5>{{audio.titulo}}</h5>
+					<audio controls>
+						<source ng-src="{{getURL(audio.ruta)}}" type="audio/mpeg">
+					</audio>
+				</div>
+				<ul uib-pagination total-items="totalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true" ng-change="cambiaPag(bigCurrentPage)"></ul>
+			</div>
+		</div>
+		<div class="col-lg-10 col-lg-offset-1" style="padding: 0px;">
+			<h1 style="padding:0px;">EXCLUSIVAS</h1>
+			<a ui-sref="noticia({id:nota.nota.alias})" ng-repeat="nota in notasNoticieros">
+				<div style="padding:18px 5px 15px 0px;" class="col-lg-4">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-weight:bold; font-familiy:Arial;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+	</div>
+</main>
+<footer>
+	<ng-include src="'views/includes/footer.ejs'"></ng-include>
+</footer>

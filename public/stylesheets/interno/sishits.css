@@ -1,0 +1,262 @@
+body{
+	padding: 0px;
+	margin: 0px;
+	background-color: #e5e8ed;
+	overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6{
+	padding: 0px;
+	margin: 0px;
+}
+
+#encabezado{
+	width: 100%;
+	height: 90px;
+	background-color: #323a44;
+}
+
+.user-logged{
+	color:#999999;
+	font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
+	font-size: 13pt;
+	margin-top: 60px;
+}
+
+.logout{
+	color: #999999;
+	margin-top: 60px;
+	font-size: 15pt;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #323a44;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+	height: 550px;
+	overflow-y: scroll;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+	color: #999999;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.formularios{
+	background-color: white;
+	-webkit-box-shadow: 0px 7px 20px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 7px 20px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 7px 20px 1px rgba(0,0,0,0.75);
+}
+
+.titulo{
+	text-align: center;
+	margin: 30px;
+}
+
+.subearchivo{
+	margin-bottom: 0px;
+	background-color: #000;
+	border: none;
+	color: white;
+	font-weight: bold;
+}
+
+.preview{
+	width: 200px;
+	height: 80px;
+	margin: 20px;
+}
+
+.form-size{
+	margin-bottom: 20px;
+}
+
+.button-save{
+	background: #000;
+	color: white;
+	border: none;
+	width: 100px;
+	height: 30px;
+}
+
+.desactivado{
+	background-color: grey;
+}
+
+.modal-pers{
+	background-color: rgba(0,0,0,0.8);
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	margin: 0px;
+}
+
+.smoke{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 200%;
+	height: 250%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.flota{
+	position: absolute;
+	top: 20%;
+	left: 10%;
+}
+.logo {
+	width: 80%;
+	height: 100%;
+}
+
+.preview-prin{
+	width: 150px;
+	height: 80px;
+	margin: 20px;
+}
+
+.card{
+    -webkit-box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.75);
+    font-family: 'Lato', sans-serif;
+    padding: 0px;
+}
+
+.card-header{
+    background-color: #446d96;
+    border-top: solid 5px #163b5f;
+}
+
+.card-header2{
+    background-color: #ff5400;
+    border-top: solid 5px #ae3c04;
+}
+
+.card h4{
+    font-size: 15px;
+    color: white;
+    padding: 17px;
+    font-weight: 400;
+    margin: 0px;
+    letter-spacing: 1px;
+    float: left;
+}
+
+.chart{
+    width: 100%; 
+    min-height: 350px;
+}

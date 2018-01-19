@@ -1,0 +1,20 @@
+<header>
+	<ng-include src="'views/includes/headerMenu.ejs'"></ng-include>
+</header>
+<main>
+	<ui-view></ui-view>
+	<div class="row" ng-show="inferiores">
+		<div class="col-lg-10 col-lg-offset-1" style="margin-top:20px;">
+			<a ng-repeat="nota in notas" ui-sref="noticia({id:nota.nota.alias})">
+				<div class="col-lg-4" >
+					<img alt="min" class="img-responsive" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<h4 style="font-family:Arial; margin-top:20px; text-align:justify;">{{nota.nota.titulo}}</h4>
+					<p style="font-family:Arial; margin-top:10px; text-align:justify;">{{nota.nota.resumen}}</p>
+				</div>
+			</a>
+		</div>
+	</div>
+</main>
+<footer>
+	<ng-include src="'views/includes/footer.ejs'"></ng-include>
+</footer>

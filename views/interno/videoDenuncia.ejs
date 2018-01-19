@@ -1,0 +1,152 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style=" height:100%;">
+				<a ui-sref="/">
+					<img style="padding-top:10px;" class="img-responsive" src="images/common/logo-globalWhite.png" alt="logo global">
+				</a>
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                	Denuncia global
+                </li>
+                <li>
+                    <a href="" ng-click="nuevaN()">Subir Video denuncia</a>
+                </li>
+                <li>
+                    <a href="" ng-click="listN()">Listar videos</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-style="screenHeight">
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formNuevoB">
+						<h2 class="titulo">SUBIR VIDEO</h2>
+						<form ng-model="formBanner" name="formBanner" novalidate ng-submit="subeNota(formBanner)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.titulo.$invalid && !formBanner.titulo.$pristine }">
+								<input class="form-control" type="text" placeholder="Titulo del video" name="titulo" ng-model="titulo" maxlength="60" required>
+								<p ng-show="formBanner.titulo.$invalid && !formBanner.titulo.$pristine" class="help-block">
+									El campo Titulo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.resumen.$invalid && !formBanner.resumen.$pristine }">
+								<textarea class="form-control" placeholder="Descripcón del video" name="resumen" ng-model="resumen" required></textarea>
+								<p ng-show="formBanner.resumen.$invalid && !formBanner.resumen.$pristine" class="help-block">
+									La descripción del video es necesaria
+								</p>
+							</div>
+														
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.url.$invalid && !formBanner.url.$pristine }">
+								<input class="form-control" type="text" placeholder="Pega la url del video de youtube" name="url" ng-model="url" required>
+								<p ng-show="formBanner.url.$invalid && !formBanner.url.$pristine" class="help-block">
+									El campo URL es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid" ng-class="{ 'desactivado' : formBanner.$invalid}" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+					<!--LISTA DE NOTICIAS-->
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formList">
+						<h2 class="titulo">Videos denuncia global</h2>
+
+							<ul uib-pagination total-items="totalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true" ng-change="cambiaPag(bigCurrentPage)"></ul>
+
+							<br><br>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>TITULO</th>
+										<th>STATUS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="nota in arrayNotas">
+										<td>{{nota.titulo}}</td>
+										<td>{{nota.status}}</td>
+										<td>
+											<a href="" ng-click="elegido(nota)" data-toggle="modal" data-target="#eliminaModal">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+					</div>
+				</div>
+				
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">{{tituloModal}}</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>{{mensajeModal}}</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			<!-- Modal 2 -->
+			<div id="eliminaModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">Advertencia</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>¿Estas seguro que quieres eliminar el video?</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="elimina()" data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</div>

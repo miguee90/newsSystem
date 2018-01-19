@@ -1,0 +1,199 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style=" height:100%;">
+				<a ui-sref="/">
+					<img style="padding-top:10px;" class="img-responsive" src="images/common/logo-globalWhite.png" alt="logo global">
+				</a>
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                	Administrador de Usuarios
+                </li>
+                <li>
+                    <a href="" ng-click="nuevoU()">Nuevo Usuario</a>
+                </li>
+                <li>
+                    <a href="" ng-click="listU()">Lista de Usuarios</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-style="screenHeight">
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formNuevoB">
+						<h2 class="titulo">Sube Nuevo Usuario</h2>
+						<form ng-model="formBanner" name="formBanner" novalidate ng-submit="subeBanner(formBanner)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.nombreB.$invalid && !formBanner.nombreB.$pristine }">
+								<input class="form-control" type="text" placeholder="Nombre completo" name="nombreB" ng-model="nombreB" required>
+								<p ng-show="formBanner.nombreB.$invalid && !formBanner.nombreB.$pristine" class="help-block">
+									El campo nombre es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.username.$invalid && !formBanner.username.$pristine }">
+								<input class="form-control" type="text" placeholder="Nombre de Usuario" name="username" ng-model="username" required>
+								<p ng-show="formBanner.username.$invalid && !formBanner.username.$pristine" class="help-block">
+									El campo username es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.email.$invalid && !formBanner.email.$pristine }">
+								<input class="form-control" type="email" placeholder="correo electrónico" name="email" ng-model="email" required>
+								<p ng-show="formBanner.email.$invalid && !formBanner.email.$pristine" class="help-block">
+									Ingresa un correo válido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.puesto.$invalid && !formBanner.puesto.$pristine }">
+								<input class="form-control" type="text" placeholder="Puesto" name="puesto" ng-model="puesto" required>
+								<p ng-show="formBanner.puesto.$invalid && !formBanner.puesto.$pristine" class="help-block">
+									Tienes que especificar puesto del usuario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.pass1.$invalid && !formBanner.pass1.$pristine }">
+								<input class="form-control" type="password" name="pass1" placeholder="Contraseña" ng-model="pass1" required>
+								<p ng-show="formBanner.pass1.$invalid && !formBanner.pass1.$pristine" class="help-block">
+									Tienes ingresar una contraseña
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.pass2.$invalid && !formBanner.pass2.$pristine && formBanner.pass1.$viewValue!=formBanner.pass2.$viewValue }">
+								<input class="form-control" type="password" name="pass2" placeholder="Repite la contraseña" ng-model="pass2" required>
+								<p ng-show="formBanner.pass2.$invalid && !formBanner.pass2.$pristine && formBanner.pass1.$viewValue!=formBanner.pass2.$viewValue" class="help-block">
+									Repite la misma contraseña
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.status.$invalid && !formBanner.status.$pristine }">
+								<select name="status" ng-model="status" required>
+									<option value="">--Selecciona el status del usuario--</option>
+									<option value="1">Suspendido</option>
+									<option value="2">Activo</option>
+								</select>
+								<p ng-show="formBanner.status.$invalid && !formBanner.status.$pristine" class="help-block">
+									Tienes que seleccionar el status del usuario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<h4>PERMISOS QUE TENDRÁ EL USUARIO</h4>
+								<label class="col-lg-12" ng-repeat="mod in modulos">
+									{{mod.nombre}} <input type="checkbox" checklist-model="mods" checklist-value="mod">
+								</label>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid" ng-class="{ 'desactivado' : formBanner.$invalid}" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+					<!--LISTA DE LOS USUARIOS-->
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formList">
+						<h2 class="titulo">Banners</h2>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Nombre Completo</th>
+										<th>UserName</th>
+										<th>Puesto</th>
+										<th>email</th>
+										<th>Activo</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="banner in arrayBanners">
+										<td>{{banner.nombreCompleto}}</td>
+										<td>{{banner.nombreUsuario}}</td>
+										<td>{{banner.puesto}}</td>
+										<td>{{banner.email}}</td>
+										<td>{{banner.activo}}</td>
+										<td>
+											<a href="" ng-click="elegido(banner)" data-toggle="modal" data-target="#eliminaModal">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+										<td>
+											<a href="" ng-click="watch(banner.path)"><span class="glyphicon glyphicon-eye-open"></span></a>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+					</div>
+				</div>
+				
+			<div class="row smoke" ng-show="galeria">
+				<div class="flota">
+					<img class="logo" ng-src={{imagenPago}} alt="imagen Banner">
+					<button ng-click="closeGalerie()" class="btn btn-danger">Cerrar</button>
+				</div>
+			</div>
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">{{tituloModal}}</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>{{mensajeModal}}</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			<!-- Modal 2 -->
+			<div id="eliminaModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">Advertencia</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>¿Estas seguro que quieres eliminar este banner?</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="elimina()" data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+	
+</div>

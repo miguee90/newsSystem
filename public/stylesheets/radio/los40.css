@@ -1,0 +1,45 @@
+.parrilla{
+	height: 500px;
+	background-image: url(../../images/estaciones/principales/parrilla-los40.jpg);
+	background-size: 100% 100%;
+}
+
+.no-padd{
+	padding: 0px;
+}
+
+.boton{
+	height:60px; 
+	width: 60px;
+	border: none;
+	background-size: 50% 50%;
+	background-position: center;
+}
+
+.play{background: url('../../images/estaciones/play.png') no-repeat;}
+.pause{background: url('../../images/estaciones/pause.png') no-repeat;}
+
+.reproductor{
+	position: relative;
+	top: 26%;
+	left: 50%;
+}
+
+@media screen and (max-width: 768px) {
+	.reproductor{
+		position: absolute;
+		top: 100%;
+		left: 0px;
+		z-index: 1002;
+	}
+	.parrilla{
+		height: 300px;
+		background-size: 100% 100%;
+	}
+	.mar-mov{
+		margin-bottom: 50px !important;
+	}
+	.pad-mov{
+		padding-top:30px;
+	}
+}

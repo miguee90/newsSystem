@@ -1,0 +1,698 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style=" height:100%;">
+				<a ui-sref="/">
+					<img style="padding-top:10px;" class="img-responsive" src="images/common/logo-globalWhite.png" alt="logo global">
+				</a>
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                	Administrador de Noticias
+                </li>
+                <li>
+                    <a href="" ng-click="nuevaN()">Nueva Nota</a>
+                </li>
+                <li>
+                    <a href="" ng-click="listN()">Editar notas</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-style="screenHeight">
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formNuevoB">
+						<h2 class="titulo">NUEVA NOTA</h2>
+						<form ng-model="formBanner" name="formBanner" novalidate ng-submit="subeNota(formBanner, hora_inicio, hora_fin)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.estado.$invalid && !formBanner.estado.$pristine }">
+								<select name="estado" id="selectGroup"
+								  ng-options="option.nombre for option in datos.availableOptions track by option._id"
+								  ng-model="datos.selectedOption" required>
+									<option value="">--Selecciona estado--</option>
+								</select>
+								<p ng-show="formBanner.estado.$invalid && !formBanner.estado.$pristine" class="help-block">
+									Tienes que seleccionar un estado
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.secciones.$invalid && !formBanner.secciones.$pristine }">
+								<select name="secciones" id="selectGroup"
+								  ng-options="option.nombre for option in dats.availableOptions track by option._id"
+								  ng-model="dats.selectedOption" required>
+									<option value="">--Selecciona una sección--</option>
+								</select>
+								<p ng-show="formBanner.secciones.$invalid && !formBanner.secciones.$pristine" class="help-block">
+									Tienes que seleccionar una sección
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.autor.$invalid && !formBanner.autor.$pristine }">
+								<select name="autor" id="selectGroup"
+								  ng-options="option.nombreCompleto for option in datsAu.availableOptions track by option.idUsuario"
+								  ng-model="datsAu.selectedOption" required>
+									<option value="">--Selecciona un autor--</option>
+								</select>
+								<p ng-show="formBanner.autor.$invalid && !formBanner.autor.$pristine" class="help-block">
+									Tienes que seleccionar un autor
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.fecha_ini.$invalid && !formBanner.fecha_ini.$pristine }">
+								<span class="input-group-addon">Fecha Inicial</span>
+								<input class="form-control" type="date" name="fecha_ini" ng-model="fecha_ini" required>
+								<div uib-timepicker ng-model="hora_inicio" hour-step="hstep" minute-step="mstep" show-meridian="true" ng-required="true"></div>
+								<p ng-show="formBanner.fecha_ini.$invalid && !formBanner.fecha_ini.$pristine" class="help-block">
+									Tienes que seleccionar una fecha inicial
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.fecha_fin.$invalid && !formBanner.fecha_fin.$pristine }">
+								<span class="input-group-addon">Fecha Final</span>
+								<input class="form-control" type="date" name="fecha_fin" ng-model="fecha_fin" required>
+								<div uib-timepicker ng-model="hora_fin" hour-step="hstep" minute-step="mstep" show-meridian="true" ng-required="true"></div>
+								<p ng-show="formBanner.fecha_fin.$invalid && !formBanner.fecha_fin.$pristine" class="help-block">
+									Tienes que seleccionar una fecha final
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.pos.$invalid && !formBanner.pos.$pristine }">
+								<h4>POSICIÓN EN PORTADA</h4>
+								<select name="pos" id="selectGroup" ng-model="pos" required>
+									<option value="">--Selecciona una posicion--</option>
+									<option value="0">0 (Historico)</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+								<p ng-show="formBanner.pos.$invalid && !formBanner.pos.$pristine" class="help-block">
+									Tienes que seleccionar una posicion para la nota
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.apro.$invalid && !formBanner.apro.$pristine }">
+								<h4>APROBAR</h4>
+								<select name="apro" id="selectGroup" ng-model="apro.aprobo" required>
+									<option value="">--Selecciona opción--</option>
+									<option value="0">No Aprobada</option>
+									<option value="1">Aprobada</option>
+								</select>
+								<p ng-show="formBanner.apro.$invalid && !formBanner.apro.$pristine" class="help-block">
+									Tienes que seleccionar aprobacion
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.aprueba.$invalid && !formBanner.aprueba.$pristine }" ng-show="apro.aprobo=='1'">
+								<select name="aprueba" id="selectGroup"
+								  ng-options="option.nombreCompleto for option in datsAp.availableOptions track by option._id"
+								  ng-model="datsAp.selectedOption">
+									<option value="">--Selecciona quien aprueba--</option>
+								</select>
+								<p ng-show="formBanner.aprueba.$invalid && !formBanner.aprueba.$pristine" class="help-block">
+									Tienes que seleccionar quien aprueba
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.titulo.$invalid && !formBanner.titulo.$pristine }">
+								<input class="form-control" type="text" placeholder="Titulo de la nota (60 caracteres)" name="titulo" ng-model="titulo" maxlength="60" required>
+								<p ng-show="formBanner.titulo.$invalid && !formBanner.titulo.$pristine" class="help-block">
+									El campo Titulo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.resumen.$invalid && !formBanner.resumen.$pristine }">
+								<textarea class="form-control" placeholder="Resumen de la nota" name="resumen" ng-model="resumen" required></textarea>
+								<p ng-show="formBanner.resumen.$invalid && !formBanner.resumen.$pristine" class="help-block">
+									El resumen de la nota es necesario
+								</p>
+							</div>
+							
+							<h3>NOTA COMPLETA</h3>
+							<text-angular name="editor" ng-model="htmlVariable" required></text-angular>
+							
+							<h3 style="margin-top:30px;" class="col-lg-10 col-lg-offset-1">TAGS</h3>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.tag1.$invalid && !formBanner.tag1.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 1" name="tag1" ng-model="tag1" required>
+								<p ng-show="formBanner.tag1.$invalid && !formBanner.tag1.$pristine" class="help-block">
+									El campo TAG1 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.tag2.$invalid && !formBanner.tag2.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 2" name="tag2" ng-model="tag2" required>
+								<p ng-show="formBanner.tag2.$invalid && !formBanner.tag2.$pristine" class="help-block">
+									El campo TAG 2 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.tag3.$invalid && !formBanner.tag3.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 3" name="tag3" ng-model="tag3" required>
+								<p ng-show="formBanner.tag3.$invalid && !formBanner.tag3.$pristine" class="help-block">
+									El campo TAG 3 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.tag4.$invalid && !formBanner.tag4.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 4" name="tag4" ng-model="tag4" required>
+								<p ng-show="formBanner.tag4.$invalid && !formBanner.tag4.$pristine" class="help-block">
+									El campo TAG 4 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.tag5.$invalid && !formBanner.tag5.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 5" name="tag5" ng-model="tag5" required>
+								<p ng-show="formBanner.tag5.$invalid && !formBanner.tag5.$pristine" class="help-block">
+									El campo TAG 5 es requerido
+								</p>
+							</div>
+							<h3 class="col-lg-10 col-lg-offset-1">TIPO DE CONTENIDO DE LA NOTA</h3>
+							<h5 class="col-lg-10 col-lg-offset-1" style="margin-bottom:20px;">
+								(Si no selecciona ninguno se subirá como Texto e Imagen)
+							</h5>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNota.tei" value="5" ng-required="!tipoNota.tei"> Texto e Imagen
+								</label>
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNota.tei" value="1" ng-required="!tipoNota.tei"> Audio
+								</label>
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNota.tei" value="2" ng-required="!tipoNota.tei"> Video
+								</label>
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNota.tei" value="3" ng-required="!tipoNota.tei"> Galería
+								</label>
+							</div>
+							
+							<h3 class="col-lg-10 col-lg-offset-1">IMAGEN PRINCIPAL</h3>
+							<div class="col-lg-10 col-lg-offset-1">
+								<file-field class="subearchivo" preview="previewImage" name="uploadFile" ng-model="uploadFile">
+									Sube imagen
+								</file-field>
+								<img class="preview-prin" ng-src="{{previewImage}}">
+								{{uploadFile.name}}
+							</div>
+							
+							<div style="margin-bottom: 50px;" class="col-lg-10 col-lg-offset-1" ng-if="tipoNota.tei=='1'">
+								<file-field class="subearchivo" name="uploadAudio" ng-model="uploadAudio">
+									Sube audio
+								</file-field>
+								{{uploadAudio.name}}
+							</div>
+							
+							<div ng-if="tipoNota.tei=='3'">
+								<div class="col-lg-10 col-lg-offset-1">
+									<h3>IMAGENES GALERIA</h3>
+									<file-field class="subearchivo" preview="preview1" name="upload1" ng-model="upload1">
+										Sube imagen 2
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview1}}">
+									{{upload1.name}}
+								</div>
+								<div class="col-lg-10 col-lg-offset-1">
+									<file-field class="subearchivo" preview="preview2" name="upload2" ng-model="upload2">
+										Sube imagen 3
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview2}}">
+									{{upload2.name}}
+								</div>
+								<div class="col-lg-10 col-lg-offset-1">
+									<file-field class="subearchivo" preview="preview3" name="upload3" ng-model="upload3">
+										Sube imagen 4
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview3}}">
+									{{upload3.name}}
+								</div>
+								<div class="col-lg-10 col-lg-offset-1">
+									<file-field class="subearchivo" preview="preview4" name="upload4" ng-model="upload4">
+										Sube imagen 5
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview4}}">
+									{{upload4.name}}
+								</div>
+							</div>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="exclusiva.checked"> Exclusiva de Globalmedia
+								</label>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="momento.checked"> Interiores
+								</label>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="noticiero.checked"> Noticiero Globalmedia
+								</label>
+							</div>
+
+							<div ng-if="noticiero.checked" class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<h4>Noticiero</h4>
+								<select name="noticie" id="selectGroup" ng-model="noticie">
+									<option value="">--Selecciona un noticiero--</option>
+									<option value="1">A detalle</option>
+									<option value="2">Reporte 100.1</option>
+									<option value="3">Formula de la mañana</option>
+									<option value="4">Noticias de la noche</option>
+								</select>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="portadaSecc.checked"> Portada de sección
+								</label>
+							</div>
+
+							<div ng-if="portadaSecc.checked" class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<h4>Elige sección</h4>
+								<select name="portadaS" id="selectGroup" ng-model="portadaS">
+									<option value="">--Selecciona la sección--</option>
+									<option value="1">Tactica</option>
+									<option value="2">Nacional</option>
+									<option value="3">Internacional</option>
+									<option value="4">Farandula</option>
+								</select>
+							</div>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid || uploadFile==null" ng-class="{ 'desactivado' : formBanner.$invalid || uploadFile==null}" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+
+
+					
+					<!--***************************FORMULARIO PARA LA EDICION DE NOTAS *************************************-->
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="bandEdita">
+						<h2 class="titulo">EDITAR NOTA</h2>
+						<form ng-model="formEdita" name="formEdita" novalidate ng-submit="actualizaNota(formEdita,hora_inicioE,hora_finE)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.estado.$invalid && !formEdita.estado.$pristine }">
+								<select name="estadoE" id="selectGroup"
+								  ng-options="option.nombre for option in datosE.availableOptions track by option.idEstados"
+								  ng-model="datosE.selectedOption" required>
+									<option value="">--Selecciona estado--</option>
+								</select>
+								<p ng-show="formEdita.estado.$invalid && !formEdita.estado.$pristine" class="help-block">
+									Tienes que seleccionar un estado
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.secciones.$invalid && !formEdita.secciones.$pristine }">
+								<select name="seccionesE" id="selectGroup"
+								  ng-options="option.nombre for option in datsE.availableOptions track by option.idsecciones"
+								  ng-model="datsE.selectedOption" required>
+									<option value="">--Selecciona una sección--</option>
+								</select>
+								<p ng-show="formEdita.secciones.$invalid && !formEdita.secciones.$pristine" class="help-block">
+									Tienes que seleccionar una sección
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.autor.$invalid && !formEdita.autor.$pristine }">
+								<select name="autor" id="selectGroup"
+								  ng-options="option.nombreCompleto for option in datsAuE.availableOptions track by option.idUsuario"
+								  ng-model="datsAuE.selectedOption" required>
+									<option value="">--Selecciona un autor--</option>
+								</select>
+								<p ng-show="formEdita.autor.$invalid && !formEdita.autor.$pristine" class="help-block">
+									Tienes que seleccionar un autor
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.fecha_ini.$invalid && !formEdita.fecha_ini.$pristine }">
+								<span class="input-group-addon">Fecha Inicial</span>
+								<input class="form-control" type="date" name="fecha_ini" ng-model="fecha_ini" required>
+								<div uib-timepicker ng-model="hora_inicioE" hour-step="hstep" minute-step="mstep" show-meridian="true" ng-required="true"></div>
+								<p ng-show="formEdita.fecha_ini.$invalid && !formEdita.fecha_ini.$pristine" class="help-block">
+									Tienes que seleccionar una fecha inicial
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.fecha_fin.$invalid && !formEdita.fecha_fin.$pristine }">
+								<span class="input-group-addon">Fecha Final</span>
+								<input class="form-control" type="date" name="fecha_fin" ng-model="fecha_fin" required>
+								<div uib-timepicker ng-model="hora_finE" hour-step="hstep" minute-step="mstep" show-meridian="true" ng-required="true"></div>
+								<p ng-show="formEdita.fecha_fin.$invalid && !formEdita.fecha_fin.$pristine" class="help-block">
+									Tienes que seleccionar una fecha final
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.pos.$invalid && !formEdita.pos.$pristine }">
+								<h4>POSICIÓN EN PORTADA</h4>
+								<select name="pos" id="selectGroup" ng-model="pos" required>
+									<option value="">--Selecciona una posicion--</option>
+									<option value="0">0 (Historico)</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+								<p ng-show="formEdita.pos.$invalid && !formEdita.pos.$pristine" class="help-block">
+									Tienes que seleccionar una posicion para la nota
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.aproE.$invalid && !formEdita.aproE.$pristine }">
+								<h4>APROBAR</h4>
+								<select name="aproE" id="selectGroup" ng-model="aproE.aprobo" required>
+									<option value="">--Selecciona opción--</option>
+									<option value="0">No Aprobada</option>
+									<option value="1">Aprobada</option>
+								</select>
+								<p ng-show="formEdita.aproE.$invalid && !formEdita.aproE.$pristine" class="help-block">
+									Tienes que seleccionar aprobacion
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.aprueba.$invalid && !formEdita.aprueba.$pristine }">
+								<select name="aprueba" id="selectGroup"
+								  ng-options="option.nombreCompleto for option in datsApE.availableOptions track by option.idUsuario"
+								  ng-model="datsApE.selectedOption">
+									<option value="">--Selecciona quien aprueba--</option>
+								</select>
+								<p ng-show="formEdita.aprueba.$invalid && !formEdita.aprueba.$pristine" class="help-block">
+									Tienes que seleccionar quien aprueba
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.titulo.$invalid && !formEdita.titulo.$pristine }">
+								<input class="form-control" type="text" placeholder="Titulo de la nota (60 caracteres)" name="titulo" ng-model="titulo" maxlength="60" required>
+								<p ng-show="formEdita.titulo.$invalid && !formEdita.titulo.$pristine" class="help-block">
+									El campo Titulo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.resumen.$invalid && !formEdita.resumen.$pristine }">
+								<textarea class="form-control" placeholder="Resumen de la nota" name="resumen" ng-model="resumen" required></textarea>
+								<p ng-show="formEdita.resumen.$invalid && !formEdita.resumen.$pristine" class="help-block">
+									El resumen de la nota es necesario
+								</p>
+							</div>
+							
+							<h3>NOTA COMPLETA</h3>
+							<text-angular name="editor" ng-model="htmlVariable" required></text-angular>
+							
+							<h3 style="margin-top:30px;" class="col-lg-10 col-lg-offset-1">TAGS</h3>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.tag1.$invalid && !formEdita.tag1.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 1" name="tag1" ng-model="tag1" required>
+								<p ng-show="formEdita.tag1.$invalid && !formEdita.tag1.$pristine" class="help-block">
+									El campo TAG1 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.tag2.$invalid && !formEdita.tag2.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 2" name="tag2" ng-model="tag2" required>
+								<p ng-show="formEdita.tag2.$invalid && !formEdita.tag2.$pristine" class="help-block">
+									El campo TAG 2 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.tag3.$invalid && !formEdita.tag3.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 3" name="tag3" ng-model="tag3" required>
+								<p ng-show="formEdita.tag3.$invalid && !formEdita.tag3.$pristine" class="help-block">
+									El campo TAG 3 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.tag4.$invalid && !formEdita.tag4.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 4" name="tag4" ng-model="tag4" required>
+								<p ng-show="formEdita.tag4.$invalid && !formEdita.tag4.$pristine" class="help-block">
+									El campo TAG 4 es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formEdita.tag5.$invalid && !formEdita.tag5.$pristine }">
+								<input class="form-control" type="text" placeholder="TAG 5" name="tag5" ng-model="tag5" required>
+								<p ng-show="formEdita.tag5.$invalid && !formEdita.tag5.$pristine" class="help-block">
+									El campo TAG 5 es requerido
+								</p>
+							</div>
+							<h3 class="col-lg-10 col-lg-offset-1">TIPO DE CONTENIDO DE LA NOTA</h3>
+							<h5 class="col-lg-10 col-lg-offset-1" style="margin-bottom:20px;">
+							</h5>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNotaE.tei" value="5" ng-required="!tipoNotaE.tei"> Texto e Imagen
+								</label>
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNotaE.tei" value="1" ng-required="!tipoNotaE.tei"> Audio
+								</label>
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNotaE.tei" value="2" ng-required="!tipoNotaE.tei"> Video
+								</label>
+								<label class="col-lg-12">
+									 <input type="radio" ng-model="tipoNotaE.tei" value="3" ng-required="!tipoNotaE.tei"> Galería
+								</label>
+							</div>
+							
+							<h3 class="col-lg-10 col-lg-offset-1">IMAGEN PRINCIPAL</h3>
+							<div class="col-lg-10 col-lg-offset-1">
+								<file-field class="subearchivo" preview="previewImage" name="uploadFile" ng-model="uploadFile">
+									Sube imagen
+								</file-field>
+								<img class="preview-prin" ng-src="{{previewImage}}">
+								{{uploadFile.name}}
+							</div>
+							
+							<div style="margin-bottom: 50px;" class="col-lg-10 col-lg-offset-1" ng-if="tipoNotaE.tei=='1'">
+								<file-field class="subearchivo" name="uploadAudio" ng-model="uploadAudio">
+									Sube audio
+								</file-field>
+								{{uploadAudio.name}}
+							</div>
+							
+							<div ng-if="tipoNotaE.tei=='3'">
+								<div class="col-lg-10 col-lg-offset-1">
+									<h3>IMAGENES GALERIA</h3>
+									<file-field class="subearchivo" preview="preview1" name="upload1" ng-model="upload1">
+										Sube imagen 2
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview1}}">
+									{{upload1.name}}
+								</div>
+								<div class="col-lg-10 col-lg-offset-1">
+									<file-field class="subearchivo" preview="preview2" name="upload2" ng-model="upload2">
+										Sube imagen 3
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview2}}">
+									{{upload2.name}}
+								</div>
+								<div class="col-lg-10 col-lg-offset-1">
+									<file-field class="subearchivo" preview="preview3" name="upload3" ng-model="upload3">
+										Sube imagen 4
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview3}}">
+									{{upload3.name}}
+								</div>
+								<div class="col-lg-10 col-lg-offset-1">
+									<file-field class="subearchivo" preview="preview4" name="upload4" ng-model="upload4">
+										Sube imagen 5
+									</file-field>
+									<img class="preview-prin" ng-src="{{preview4}}">
+									{{upload4.name}}
+								</div>
+							</div>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="exclusivaE.checked"> Exclusiva de Globalmedia
+								</label>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="momento.checked"> Interiores
+								</label>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="noticiero.checked"> Noticiero Globalmedia
+								</label>
+							</div>
+
+							<div ng-if="noticiero.checked" class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<h4>Noticiero</h4>
+								<select name="noticie" id="selectGroup" ng-model="noticie">
+									<option value="">--Selecciona un noticiero--</option>
+									<option value="1">A detalle</option>
+									<option value="2">Reporte 100.1</option>
+									<option value="3">Formula de la mañana</option>
+									<option value="4">Noticias de la noche</option>
+								</select>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<label class="col-lg-12">
+									 <input type="checkbox" ng-model="portadaSecc.checked"> Portada de sección
+								</label>
+							</div>
+
+							<div ng-if="portadaSecc.checked" class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<h4>Elige sección</h4>
+								<select name="portadaS" id="selectGroup" ng-model="portadaS">
+									<option value="0">--Selecciona la sección--</option>
+									<option value="1">Tactica</option>
+									<option value="2">Nacional</option>
+									<option value="3">Internacional</option>
+									<option value="4">Farandula</option>
+								</select>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formEdita.$invalid" ng-class="{ 'desactivado' : formEdita.$invalid}" data-toggle="modal" data-target="#myModal">
+									Editar Nota
+								</button>
+							</div>
+						</form>
+					</div>
+
+					<!--********************************************FIN FORMULARIO PARA EDICION DE NOTAS ************************************-->
+
+
+					<!--LISTA DE NOTICIAS-->
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formList">
+						<h2 class="titulo">NOTAS</h2>
+							<select name="seccs" id="selectGroup"
+							  ng-options="option.nombre for option in datsecc.availableOptions track by option._id"
+							  ng-model="datsecc.selectedOption" 
+							  ng-change="cambia()">
+								<!--<option value="">--Selecciona una sección--</option>-->
+								<option value="">Portada</option>
+							</select>
+
+							<ul class="col-lg-7 col-lg-offset-1" uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true" ng-change="cambiaPag(bigCurrentPage)"></ul>
+							<br><br>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>TITULO</th>
+										<th>POSICIÓN</th>
+										<th>STATUS</th>
+										<th>HITS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="nota in arrayNotas">
+										<td>{{nota.titulo}}</td>
+										<td>
+											<select name="pos2" ng-model="pos2" ng-change="cambiaPrio(nota,pos2)">
+												<option value="{{nota.prioridad}}" selected>{{nota.prioridad}}</option>
+												<option value="0">0 (Historico)</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</td>
+										<td>{{nota.status}}</td>
+										<td>{{nota.h}}</td>
+										<td>
+											<a href="" ng-click="editar(nota)"><span class="glyphicon glyphicon-pencil"></span></a>
+										</td>
+										<td>
+											<a href="" data-toggle="modal" data-target="#myModal" ng-click="watch(nota)"><span class="glyphicon glyphicon-eye-open"></span></a>
+										</td>
+										<td>
+											<a href="" ng-click="elegido(nota)" data-toggle="modal" data-target="#eliminaModal">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+
+						<br><br>
+						<h2>PROGRAMADAS</h2>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>TITULO</th>
+									<th>POSICIÓN</th>
+									<th>STATUS</th>
+									<th>HITS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="nota in arrayNotasP">
+									<td>{{nota.titulo}}</td>
+									<td>
+										<select name="pos2" ng-model="pos2" ng-change="cambiaPrio(nota,pos2)">
+											<option value="{{nota.prioridad}}" selected>{{nota.prioridad}}</option>
+											<option value="0">0 (Historico)</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+										</select>
+									</td>
+									<td>{{nota.status}}</td>
+									<td>{{nota.h}}</td>
+									<td>
+										<a href="" ng-click="editar(nota)"><span class="glyphicon glyphicon-pencil"></span></a>
+									</td>
+									<td>
+										<a href="" data-toggle="modal" data-target="#myModal" ng-click="watch(nota)"><span class="glyphicon glyphicon-eye-open"></span></a>
+									</td>
+									<td>
+										<a href="" ng-click="elegido(nota)" data-toggle="modal" data-target="#eliminaModal">
+											<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog" data-backdrop="static">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">{{tituloModal}}</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>{{mensajeModal}}</p>
+					<p>{{enlace}}</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			<!-- Modal 2 -->
+			<div id="eliminaModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">Advertencia</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>¿Estas seguro que quieres cambiar el status de esta nota a 0 (inactiva)?</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="elimina()" data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</div>

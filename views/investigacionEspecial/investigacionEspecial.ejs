@@ -1,0 +1,122 @@
+<header>
+	<ng-include src="'views/includes/headerMenu.ejs'"></ng-include>
+</header>
+<main>
+	<div class="container-fluid">
+		<div class="row" pegaesnoticia ng-if="false">
+			<div class="hidden-sm hidden-xs col-lg-10 col-lg-offset-1 es-noticia">
+				<b>Es Noticia:</b>
+				<ul>
+					<a href="#"><li>{{esNoticia[esNoticia.length-1]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-2]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-3]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-4]}}</li></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--BARRA PROGRAMATICA-->
+	<div class="container-fluid">
+		<div class="row" style="margin-top:10px;" pegabarra ng-if="false">
+			<div class="col-xs-12 col-sm-12 col-lg-10 col-lg-offset-1" style="padding:0px;">
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<div class="col-xs-12 col-sm-12 col-lg-6 da-clic" style="padding:0px;">
+						<p>DA CLICK AQUÍ</p>
+						<p class="sintoniza">SINTONIZANOS</p>
+					</div>
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 principales-prog" ng-style="progPrincipales">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 formula-prog" style="padding:0px;" ng-style="progFormula">
+					</div></a>
+					<a ui-sref="pop"><div class="col-xs-12 col-sm-12 col-lg-6 exa-prog" style="padding:0px;" ng-style="progPop">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="imagen"><div class="col-xs-12 col-sm-12 col-lg-6 imagen-prog" style="padding:0px;" ng-style="progImagen">
+					</div></a>
+					<a ui-sref="hundred"><div class="col-xs-12 col-sm-12 col-lg-6 hundred-prog" style="padding:0px;" ng-style="progHundred">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="kebuena"><div class="col-xs-12 col-sm-12 col-lg-6 kebuena-prog" style="padding:0px;" ng-style="progKebuena">
+					</div></a>
+					<a ui-sref="ViveCanal"><div class="col-xs-12 col-sm-12 col-lg-6 vivecanal-prog" style="padding:0px;" ng-style="progVive">
+					</div></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1" style="padding:0px; margin-top:30px;">
+			<a ng-href="http://{{slideInves[0].hyperlink}}"><img class="img-responsive" alt="investigacion especial" ng-src="{{slideInves[0].path.substr(6)}}"></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row">
+				<div class="col-lg-8">
+					<a ui-sref="noticia({id:investigaciones[0].nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<img class="img-responsive" alt="principal" ng-src="images/multimedia/{{investigaciones[0].imagen.imgSeccionF}}">
+							<h2>{{investigaciones[0].nota.titulo}}</h2>
+							<p>{{investigaciones[0].nota.resumen}}</p>
+						</div>
+					</a>
+					<a ui-sref="noticia({id:investigaciones[1].nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<div class="col-lg-7">
+								<h2>{{investigaciones[1].nota.titulo}}</h2>
+							</div>
+							<img class="col-lg-5 img-responsive" alt="principal" ng-src="images/multimedia/{{investigaciones[1].imagen.imgSeccionF}}">
+							<p>{{investigaciones[1].nota.resumen}}</p>
+						</div>
+					</a>
+					<a ui-sref="noticia({id:investigaciones[2].nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<img class="col-lg-5 img-responsive" alt="principal" ng-src="images/multimedia/{{investigaciones[2].imagen.imgSeccionF}}">
+							<div class="col-lg-7">
+								<h2>{{investigaciones[2].nota.titulo}}</h2>
+							</div>
+							<p>{{investigaciones[2].nota.resumen}}</p>
+						</div>
+					</a>
+					<!--NOTAS EXTRAS-->
+					<a ng-repeat="nota in notasMas" ui-sref="noticia({id: nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<img class="col-lg-5 img-responsive" alt="principal" ng-src="images/multimedia/{{nota.imagenes.imgSeccionF}}">
+							<div class="col-lg-7">
+								<h2>{{nota.titulo}}</h2>
+							</div>
+							<p>{{nota.resumen}}</p>
+						</div>
+					</a>
+					<div class="row">
+						<a href="" ng-click="cargaMas()">
+							<div class="col-lg-6 col-lg-offset-6 cargar-mas">
+								<p style="margin-top:15px; text-align:center; color:white;">CARGAR MÁS CONTENIDO</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="col-lg-12 almomento">
+						<h4 style="border-bottom: 1px solid #bfbfbf;">AL MOMENTO</h4>
+						<a ui-sref="noticia({id:nota.alias})" ng-repeat="nota in almomento">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#fea53f;">{{nota.fecha_inicio | date:' HH:mm'}}</span> {{nota.resumen}}</p>
+						</a>
+					</div>
+					<a href="http://globalmedia.mx/live">
+						<div class="col-lg-12">
+							<img class="img-responsive" alt="trafico san luis" src="images/common/trafico.jpg">
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<footer>
+	<ng-include src="'views/includes/footer.ejs'"></ng-include>
+</footer>

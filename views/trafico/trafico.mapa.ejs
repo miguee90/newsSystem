@@ -1,0 +1,160 @@
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1 sliderTrafic no-marpad" style="margin-top:20px;">
+		<a ng-repeat="slide in slidesTrafico" ng-href="http://{{slide.hyperlink}}">
+			<img class="col-lg-12 slide slide-animation img-responsive" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex2($index2)">
+		</a>
+		<a class="arrow prev" href="" ng-click="nextSlide2()"></a>
+		<a class="arrow next" href="" ng-click="prevSlide2()"></a>
+		<nav class="navz">
+			<div class="wrapper">
+				<ul class="dots">
+				<li class="dot" ng-repeat="slide in slidesTrafico">
+					<a href="#" ng-class="{'active':isCurrentSlideIndex2($index2)}"
+					   ng-click="setCurrentSlideIndex2($index2);">
+					</a>
+				</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+ </div>
+
+
+<!--MAP-->
+<div class="row" style="margin-bottom:10px !important;">
+	<div class="col-lg-10 col-lg-offset-1">
+		<div class="col-lg-2 menuCams">
+			<img class="marker" alt="marker" src="images/common/marker.png">
+			<p class="texto-menu">Selecciona tu</p>
+			<p class="texto-menu2">cámara</p>
+		</div>
+		<div class="col-lg-8 menuCams">
+			<p class="textoHeader">Ciudad de San Luis Potosí</p>
+		</div>
+		<a ui-sref="Trafico.Mosaico">
+			<div class="col-lg-2 botonMosaico">
+				<img class="mosaico-logo" alt="mosaico" src="images/common/logo-mosaico.png">
+				<p class="texto-verde">Ir al mosaico de</p>
+				<p class="texto-verde2">cámaras</p>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1">
+		<div id="left-menu" class="col-lg-2 menu-cams" style="background-color:#ececec;">
+			<a ui-sref="Trafico.Reproduce({id:1})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Citadella 1</p>
+					<p>Av. Salvador Nava / Chapultepec</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:2})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Citadella 2</p>
+					<p>Av. Salvador Nava / Chapultepec</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:3})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Cámara el paseo 1</p>
+					<p>Av. Salvador Nava</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:4})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Cámara el paseo 2</p>
+					<p>Av. Salvador Nava</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:5})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Distribuidor Juárez</p>
+					<p>Salvador Nava / Carretera 57</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:6})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Hospital de la salud 1</p>
+					<p>Carretera 57 / Calle Granate</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:7})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Hospital de la salud 2</p>
+					<p>Carretera 57 / Calle Granate</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:8})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Hotel Ibis 1</p>
+					<p>Carretera 57 / Eje 102</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:9})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>Hotel Ibis 2</p>
+					<p>Carretera 57 / Eje 102</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:10})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>CAM 10</p>
+					<p>UBICACION 10</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:11})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>CAM 11</p>
+					<p>UBICACION 11</p>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:12})">
+				<div>
+					<img class="marker" alt="marker" src="images/common/marker.png">
+					<p>CAM 12</p>
+					<p>UBICACION 12</p>
+				</div>
+			</a>
+		</div>
+		<div>
+			<ui-gmap-google-map class="col-lg-10" style="padding-right:0px;" center='map.center' zoom='map.zoom' options="options">
+				<ui-gmap-markers models="markers" coords="'self'" icon="'icon'" click="clickMarker"></ui-gmap-markers>
+				<ui-gmap-layer type="TrafficLayer" show="true"></ui-gmap-layer>
+			</ui-gmap-google-map>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1 sliderTrafic no-marpad" style="margin-top:20px;">
+		<a ng-repeat="slide in slidesTrafico2" ng-href="http://{{slide.hyperlink}}">
+			<img class="col-lg-12 slide slide-animation img-responsive" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex3($index3)">
+		</a>
+		<a class="arrow prev" href="" ng-click="nextSlide3()"></a>
+		<a class="arrow next" href="" ng-click="prevSlide3()"></a>
+		<nav class="navz">
+			<div class="wrapper">
+				<ul class="dots">
+				<li class="dot" ng-repeat="slide in slidesTrafico2">
+					<a href="#" ng-class="{'active':isCurrentSlideIndex3($index3)}"
+					   ng-click="setCurrentSlideIndex($index3);">
+					</a>
+				</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+ </div>

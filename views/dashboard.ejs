@@ -1,0 +1,23 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style="margin-top:10px; height:100%;">
+				<img class="img-responsive" src="images/common/logo-globalWhite.png" alt="logo global">
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<a ng-repeat="modulo in modulos" ui-sref="{{modulo.modulo[0].estado}}" href="#">
+			<div class="col-lg-3 modulo">
+				<h3 class="nombre"><b>{{modulo.modulo[0].nombre}}</b></h3>
+				<p class="desc">{{modulo.modulo[0].descripcion}}</p>
+			</div>
+		</a>
+	</div>
+</div>

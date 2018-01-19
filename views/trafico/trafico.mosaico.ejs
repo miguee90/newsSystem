@@ -1,0 +1,126 @@
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1 sliderTrafic no-marpad" style="margin-top:20px;">
+		<a ng-repeat="slide in slidesTrafico" ng-href="http://{{slide.hyperlink}}">
+			<img class="col-lg-12 slide slide-animation img-responsive" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex2($index2)">
+		</a>
+		<a class="arrow prev" href="" ng-click="nextSlide2()"></a>
+		<a class="arrow next" href="" ng-click="prevSlide2()"></a>
+		<nav class="navz">
+			<div class="wrapper">
+				<ul class="dots">
+				<li class="dot" ng-repeat="slide in slidesTrafico">
+					<a href="#" ng-class="{'active':isCurrentSlideIndex2($index2)}"
+					   ng-click="setCurrentSlideIndex2($index2);">
+					</a>
+				</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<a ui-sref="Trafico.Reproduce({id:1})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara1.jpg');">
+					<div class="numero"><p class="centrar">1</p></div>
+					<div class="poligono-mosaico">Av. Salvador Nava / Chapultepec</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:2})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara2.jpg');">
+					<div class="numero"><p class="centrar">2</p></div>
+					<div class="poligono-mosaico">Av. Salvador Nava / Chapultepec</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:3})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara3.jpg');">
+					<div class="numero"><p class="centrar">3</p></div>
+					<div class="poligono-mosaico">Av. Salvador Nava</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:4})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara1.jpg');">
+					<div class="numero"><p class="centrar">4</p></div>
+					<div class="poligono-mosaico">Av. Salvador Nava</div>
+				</div>	
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<a ui-sref="Trafico.Reproduce({id:5})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara1.jpg');">
+					<div class="numero"><p class="centrar">5</p></div>
+					<div class="poligono-mosaico">Salvador Nava / Carretera 57</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:6})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara2.jpg');">
+					<div class="numero"><p class="centrar">6</p></div>
+					<div class="poligono-mosaico">Carretera 57 / Calle Granate</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:7})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara3.jpg');">
+					<div class="numero"><p class="centrar">7</p></div>
+					<div class="poligono-mosaico">Carretera 57 / Calle Granate</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:8})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara1.jpg');">
+					<div class="numero"><p class="centrar">8</p></div>
+					<div class="poligono-mosaico">Carretera 57 / Eje 102</div>
+				</div>	
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<a ui-sref="Trafico.Reproduce({id:9})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara1.jpg');">
+					<div class="numero"><p class="centrar">9</p></div>
+					<div class="poligono-mosaico">PROXIMAMENTE</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:10})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara2.jpg');">
+					<div class="numero"><p class="centrar">10</p></div>
+					<div class="poligono-mosaico">PROXIMAMENTE</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:11})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara3.jpg');">
+					<div class="numero"><p class="centrar">11</p></div>
+					<div class="poligono-mosaico">PROXIMAMENTE</div>
+				</div>
+			</a>
+			<a ui-sref="Trafico.Reproduce({id:12})" class="col-lg-3">
+				<div class="mosaico-item" style="background-image:url('images/camaras/camara1.jpg');">
+					<div class="numero"><p class="centrar">12</p></div>
+					<div class="poligono-mosaico">PROXIMAMENTE</div>
+				</div>	
+			</a>
+		</div>
+	</div>
+
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1 sliderTrafic no-marpad" style="margin-top:20px;">
+		<a ng-repeat="slide in slidesTrafico2" ng-href="http://{{slide.hyperlink}}">
+			<img class="col-lg-12 slide slide-animation img-responsive" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex3($index3)">
+		</a>
+		<a class="arrow prev" href="" ng-click="nextSlide3()"></a>
+		<a class="arrow next" href="" ng-click="prevSlide3()"></a>
+		<nav class="navz">
+			<div class="wrapper">
+				<ul class="dots">
+				<li class="dot" ng-repeat="slide in slidesTrafico2">
+					<a href="#" ng-class="{'active':isCurrentSlideIndex3($index3)}"
+					   ng-click="setCurrentSlideIndex($index3);">
+					</a>
+				</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+ </div>

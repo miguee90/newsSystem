@@ -1,0 +1,487 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style=" height:100%;">
+				<a ui-sref="/">
+					<img style="padding-top:10px;" class="img-responsive" src="images/common/logo-globalWhite.png" alt="logo global">
+				</a>
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                	Controles
+                </li>
+                <li>
+                    <a href="" ng-click="nuevaN()">Agregar  nuevo control</a>
+                </li>
+                <li>
+                    <a href="" ng-click="listN()">Listar controles</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-style="screenHeight">
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formNuevoB">
+						<h2 class="titulo">NUEVO CONTROL</h2>
+						<form ng-model="formBanner" name="formBanner" novalidate ng-submit="subeNota(formBanner)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.fecha.$invalid && !formBanner.fecha.$pristine }">
+								<span class="input-group-addon">Fecha</span>
+								<input class="form-control" type="date" name="fecha" ng-model="fecha" required>
+								<p ng-show="formBanner.fecha.$invalid && !formBanner.fecha.$pristine" class="help-block">
+									Tienes que seleccionar una fecha del evento
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.hora_ini.$invalid && !formBanner.hora_ini.$pristine }">
+								<h4>HORA INICIAL DEL EVENTO</h4>
+
+								<div uib-timepicker ng-model="hora_ini" ng-change="changed(hora_ini)" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+								<p ng-show="formBanner.hora_ini.$invalid && !formBanner.hora_ini.$pristine" class="help-block">
+									Tienes que seleccionar la hora del evento
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.hora_fin.$invalid && !formBanner.hora_fin.$pristine }">
+								<h4>HORA FINAL DEL EVENTO</h4>
+
+								<div uib-timepicker ng-model="hora_fin" ng-change="changed2(hora_fin)" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+								<p ng-show="formBanner.hora_fin.$invalid && !formBanner.hora_fin.$pristine" class="help-block">
+									Tienes que seleccionar la hora final del evento
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.cliente.$invalid && !formBanner.cliente.$pristine }">
+								<input class="form-control" type="text" placeholder="Cliente" name="cliente" ng-model="cliente" required>
+								<p ng-show="formBanner.cliente.$invalid && !formBanner.cliente.$pristine" class="help-block">
+									El campo Cliente es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.evento.$invalid && !formBanner.evento.$pristine }">
+								<input class="form-control" type="text" placeholder="Evento" name="evento" ng-model="evento" required>
+								<p ng-show="formBanner.evento.$invalid && !formBanner.evento.$pristine" class="help-block">
+									El campo Evento es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.direccion.$invalid && !formBanner.direccion.$pristine }">
+								<input class="form-control" type="text" placeholder="Dirección" name="direccion" ng-model="direccion" required>
+								<p ng-show="formBanner.direccion.$invalid && !formBanner.direccion.$pristine" class="help-block">
+									El campo Dirección es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.estaciones.$invalid && !formBanner.estaciones.$pristine }">
+								<select name="estaciones" id="selectGroup"
+								  ng-options="option.nombre for option in datos.availableOptions track by option._id"
+								  ng-model="datos.selectedOption" required>
+									<option value="">--Selecciona estación--</option>
+								</select>
+								<p ng-show="formBanner.estaciones.$invalid && !formBanner.estaciones.$pristine" class="help-block">
+									Tienes que seleccionar una estación
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.locutor.$invalid && !formBanner.locutor.$pristine }">
+								<input class="form-control" type="text" placeholder="Locutor" name="locutor" ng-model="locutor" required>
+								<p ng-show="formBanner.locutor.$invalid && !formBanner.locutor.$pristine" class="help-block">
+									El campo locutor es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.unidades.$invalid && !formBanner.unidades.$pristine }">
+								<select name="unidades" id="selectGroup"
+								  ng-options="option.nombre for option in dats.availableOptions track by option._id"
+								  ng-model="dats.selectedOption" required>
+									<option value="">--Selecciona una unidad--</option>
+								</select>
+								<p ng-show="formBanner.unidades.$invalid && !formBanner.unidades.$pristine" class="help-block">
+									Tienes que seleccionar una unidad
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.tecnico.$invalid && !formBanner.tecnico.$pristine }">
+								<select name="tecnico" id="selectGroup"
+								  ng-options="option.nombre for option in datsAu.availableOptions track by option._id"
+								  ng-model="datsAu.selectedOption" required>
+									<option value="">--Selecciona un técnico--</option>
+								</select>
+								<p ng-show="formBanner.tecnico.$invalid && !formBanner.tecnico.$pristine" class="help-block">
+									Tienes que seleccionar un técnico
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.contrato.$invalid && !formBanner.contrato.$pristine }">
+								<input class="form-control" type="text" placeholder="Contrato" name="contrato" ng-model="contrato" required>
+								<p ng-show="formBanner.contrato.$invalid && !formBanner.contrato.$pristine" class="help-block">
+									El campo Contrato es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.status.$invalid && !formBanner.status.$pristine }">
+								<select name="status" id="selectGroup"
+								  ng-options="option.nombre for option in datsS.availableOptions track by option._id"
+								  ng-model="datsS.selectedOption" required>
+									<option value="">--Selecciona un estado--</option>
+								</select>
+								<p ng-show="formBanner.status.$invalid && !formBanner.status.$pristine" class="help-block">
+									Tienes que seleccionar un estado
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.contacto.$invalid && !formBanner.contacto.$pristine }">
+								<input class="form-control" type="text" placeholder="Contacto" name="contacto" ng-model="contacto" required>
+								<p ng-show="formBanner.contacto.$invalid && !formBanner.contacto.$pristine" class="help-block">
+									El campo Contacto es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<textarea class="form-control" placeholder="Observaciones" name="observaciones" ng-model="observaciones"></textarea>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.agente.$invalid && !formBanner.agente.$pristine }">
+								<input class="form-control" type="text" placeholder="Agente de ventas" name="agente" ng-model="agente" required>
+								<p ng-show="formBanner.agente.$invalid && !formBanner.agente.$pristine" class="help-block">
+									El campo Agente de ventas es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.hojad.$invalid && !formBanner.hojad.$pristine }">
+								<h4>ENTREGÓ HOJA DE DATOS</h4>
+								<select name="hojad" id="selectGroup" ng-model="hojad" required>
+									<option value="">--Selecciona una respuesta--</option>
+									<option value="0">NO</option>
+									<option value="1">SI</option>
+								</select>
+								<p ng-show="formBanner.hojad.$invalid && !formBanner.hojad.$pristine" class="help-block">
+									Tienes que seleccionar una respuesta
+								</p>
+							</div>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid" ng-class="{ 'desactivado' : formBanner.$invalid}" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+					
+					<!--***************************FORMULARIO PARA LA EDICION DE CONTROLES *************************************-->
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="bandEdita">
+						<h2 class="titulo">EDITAR CONTROL</h2>
+						<form ng-model="formEdita" name="formEdita" novalidate ng-submit="actualizaNota(formEdita)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.fecha.$invalid && !formBanner.fecha.$pristine }">
+								<span class="input-group-addon">Fecha</span>
+								<input class="form-control" type="date" name="fecha" ng-model="fecha" required>
+								<p ng-show="formBanner.fecha.$invalid && !formBanner.fecha.$pristine" class="help-block">
+									Tienes que seleccionar una fecha del evento
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.hora_ini.$invalid && !formBanner.hora_ini.$pristine }">
+								<h4>HORA INICIAL DEL EVENTO</h4>
+
+								<div uib-timepicker ng-model="hora_ini" ng-change="changed(hora_ini)" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+								<p ng-show="formBanner.hora_ini.$invalid && !formBanner.hora_ini.$pristine" class="help-block">
+									Tienes que seleccionar la hora del evento
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.hora_fin.$invalid && !formBanner.hora_fin.$pristine }">
+								<h4>HORA FINAL DEL EVENTO</h4>
+
+								<div uib-timepicker ng-model="hora_fin" ng-change="changed2(hora_fin)" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+								<p ng-show="formBanner.hora_fin.$invalid && !formBanner.hora_fin.$pristine" class="help-block">
+									Tienes que seleccionar la hora final del evento
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.cliente.$invalid && !formBanner.cliente.$pristine }">
+								<input class="form-control" type="text" placeholder="Cliente" name="cliente" ng-model="cliente" required>
+								<p ng-show="formBanner.cliente.$invalid && !formBanner.cliente.$pristine" class="help-block">
+									El campo Cliente es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.evento.$invalid && !formBanner.evento.$pristine }">
+								<input class="form-control" type="text" placeholder="Evento" name="evento" ng-model="evento" required>
+								<p ng-show="formBanner.evento.$invalid && !formBanner.evento.$pristine" class="help-block">
+									El campo Evento es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.direccion.$invalid && !formBanner.direccion.$pristine }">
+								<input class="form-control" type="text" placeholder="Dirección" name="direccion" ng-model="direccion" required>
+								<p ng-show="formBanner.direccion.$invalid && !formBanner.direccion.$pristine" class="help-block">
+									El campo Dirección es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.estaciones.$invalid && !formBanner.estaciones.$pristine }">
+								<select name="estaciones" id="selectGroup"
+								  ng-options="option.nombre for option in datos.availableOptions track by option.id"
+								  ng-model="datos.selectedOption" required>
+									<option value="">--Selecciona estación--</option>
+								</select>
+								<p ng-show="formBanner.estaciones.$invalid && !formBanner.estaciones.$pristine" class="help-block">
+									Tienes que seleccionar una estación
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.locutor.$invalid && !formBanner.locutor.$pristine }">
+								<input class="form-control" type="text" placeholder="Locutor" name="locutor" ng-model="locutor" required>
+								<p ng-show="formBanner.locutor.$invalid && !formBanner.locutor.$pristine" class="help-block">
+									El campo locutor es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.unidades.$invalid && !formBanner.unidades.$pristine }">
+								<select name="unidades" id="selectGroup"
+								  ng-options="option.nombre for option in dats.availableOptions track by option.id"
+								  ng-model="dats.selectedOption" required>
+									<option value="">--Selecciona una unidad--</option>
+								</select>
+								<p ng-show="formBanner.unidades.$invalid && !formBanner.unidades.$pristine" class="help-block">
+									Tienes que seleccionar una unidad
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.contrato.$invalid && !formBanner.contrato.$pristine }">
+								<input class="form-control" type="text" placeholder="Contrato" name="contrato" ng-model="contrato" required>
+								<p ng-show="formBanner.contrato.$invalid && !formBanner.contrato.$pristine" class="help-block">
+									El campo Contrato es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.status.$invalid && !formBanner.status.$pristine }">
+								<select name="status" id="selectGroup"
+								  ng-options="option.nombre for option in datsS.availableOptions track by option.id"
+								  ng-model="datsS.selectedOption" required>
+									<option value="">--Selecciona un estado--</option>
+								</select>
+								<p ng-show="formBanner.status.$invalid && !formBanner.status.$pristine" class="help-block">
+									Tienes que seleccionar un estado
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.contacto.$invalid && !formBanner.contacto.$pristine }">
+								<input class="form-control" type="text" placeholder="Contacto" name="contacto" ng-model="contacto" required>
+								<p ng-show="formBanner.contacto.$invalid && !formBanner.contacto.$pristine" class="help-block">
+									El campo Contacto es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<textarea class="form-control" placeholder="Observaciones" name="observaciones" ng-model="observaciones"></textarea>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.agente.$invalid && !formBanner.agente.$pristine }">
+								<input class="form-control" type="text" placeholder="Agente de ventas" name="agente" ng-model="agente" required>
+								<p ng-show="formBanner.agente.$invalid && !formBanner.agente.$pristine" class="help-block">
+									El campo Agente de ventas es requerido
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.hojad.$invalid && !formBanner.hojad.$pristine }">
+								<h4>ENTREGÓ HOJA DE DATOS</h4>
+								<select name="hojad" id="selectGroup" ng-model="hojad" required>
+									<option value="">--Selecciona una respuesta--</option>
+									<option value="0">NO</option>
+									<option value="1">SI</option>
+								</select>
+								<p ng-show="formBanner.hojad.$invalid && !formBanner.hojad.$pristine" class="help-block">
+									Tienes que seleccionar una respuesta
+								</p>
+							</div>
+							
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid" ng-class="{ 'desactivado' : formBanner.$invalid}" data-toggle="modal" data-target="#myModal">
+									Actualizar
+								</button>
+							</div>
+						</form>
+					</div>
+
+					<!--********************************************FIN FORMULARIO PARA EDICION DE NOTAS ************************************-->
+
+
+					<!--LISTA DE CONTROLES-->
+					<div class="col-lg-11 formularios" ng-if="formList">
+						<h2 class="titulo">CONTROLES</h2>
+							<div class="col-lg-12">
+								<h4 style="margin-bottom:30px;">Rango de fechas</h4>
+								<h5 style="margin-left:20px; width: 70px; float:left;">Inicio: </h5>
+								<!--<input style="float:left;" type="date" ng-model="inicio" name="inicio">-->
+
+								<input style="width:150px; float:left;" type="text" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="inicio" is-open="popup1.opened" close-text="Close" />
+						        <span style="float:left;" class="input-group-btn">
+						            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+						        </span>
+
+								<h5 style="margin-left:50px; width: 70px; float:left;">Fin: </h5>
+
+								<input style="width:150px; float:left;" type="text" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="fin" is-open="popup2.opened" close-text="Close" />
+						        <span style="float:left;" class="input-group-btn">
+						            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+						        </span>
+								<button  style="margin-left:50px;" ng-click="filtrar(inicio,fin)">Filtrar</button>
+
+								<button class="btn btn-primary" ng-click="exportaE()">Exportar Excel</button>
+							</div>
+
+							<div class="col-lg-12 col-lg-offset-1">
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkFecha" checked> FECHA
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkCliente" checked> CLIENTE
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkEvento" checked> EVENTO
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkDireccion" checked> DIRECCIÓN
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkEstacion" checked> ESTACIÓN
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkLocutor" checked> LOCUTOR
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkUnidad" checked> UNIDAD
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkTecnicos" checked> TÉCNINCOS
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkContrato" checked> CONTRATO
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkEstado" checked> ESTADO
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkObser" checked> OBSERVACIONES
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkAgente" checked> AGENTE
+								<input style="margin-left:15px;" type="checkbox" ng-checked="true" ng-model="checkHojad" checked> HOJA DATOS
+							</div>
+
+							<ul class="col-lg-7 col-lg-offset-1" uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true" ng-change="cambiaPag(bigCurrentPage)"></ul>
+
+							<table id="tablaL" class="export-table table">
+								<thead>
+									<tr>
+										<th ng-if="checkFecha">
+											<a href="" ng-click="sortType='dia'; sortReverse = !sortReverse;">
+												Fecha
+												<span ng-show="sortType == 'dia' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'dia' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+										<th ng-if="checkCliente">
+											<a href="" ng-click="sortType='cliente'; sortReverse = !sortReverse;">
+												Cliente
+												<span ng-show="sortType == 'cliente' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'cliente' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+										<th ng-if="checkEvento">Evento</th>
+										<th ng-if="checkDireccion">Direcc</th>
+										<th ng-if="checkEstacion">Estación</th>
+										<th ng-if="checkLocutor">Locutor</th>
+										<th ng-if="checkUnidad">Unidad</th>
+										<th ng-if="checkTecnicos">Tecs</th>
+										<th ng-if="checkContrato">
+											<a href="" ng-click="sortType='contrato'; sortReverse = !sortReverse;">
+												Contrato
+												<span ng-show="sortType == 'contrato' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'contrato' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+										<th ng-if="checkEstado">
+											<a href="" ng-click="sortType='estado'; sortReverse = !sortReverse;">
+												Estado
+												<span ng-show="sortType == 'estado' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'estado' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+										<th ng-if="checkObser">Obser</th>
+										<th ng-if="checkAgente">Agente</th>
+										<th ng-if="checkHojad">Hoja de datos</th>
+										<th>
+											<a href="" ng-click="sortType='fechaCaptura'; sortReverse = !sortReverse;">
+												Fecha Captura
+												<span ng-show="sortType == 'fechaCaptura' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'fechaCaptura' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-class="{nodata : control.hojadatos==0, cancelado : control.estado==3}" ng-repeat="control in arrayNotas | orderBy : sortType : sortReverse">
+										<td ng-if="checkFecha">
+											{{control.dia | date:'dd-MM-yyyy'}}
+											{{control.horainicio}} a {{control.horafin}}
+										</td>
+										<td ng-if="checkCliente">{{control.cliente}}</td>
+										<td ng-if="checkEvento">{{control.evento}}</td>
+										<td ng-if="checkDireccion">{{control.direccion}}</td>
+										<td ng-if="checkEstacion">{{esta(control.estacion)}}</td>
+										<td ng-if="checkLocutor">{{control.locutor}}</td>
+										<td ng-if="checkUnidad">{{unidades(control.unidad)}}</td>
+										<td ng-if="checkTecnicos">{{}}</td>
+										<td ng-if="checkContrato">{{control.contrato}}</td>
+										<td ng-if="checkEstado">{{status(control.estado)}}</td>
+										<td ng-if="checkObser">{{control.observaciones}}</td>
+										<td ng-if="checkAgente">{{control.agenteventas}}</td>
+										<td ng-if="checkHojad">{{control.hojadatos==0 ? "NO" : "SI"}}</td>
+										<td>{{control.fechaCaptura | date:'dd-MM-yyyy HH:mm'}}</td>
+										<td>
+											<a href="" data-toggle="modal" data-target="#myModal" ng-click="watch(control)">
+												<span class="glyphicon glyphicon-ok"></span>
+											</a>
+										</td>
+										<td>
+											<a href="" ng-click="elegido(control)" data-toggle="modal" data-target="#eliminaModal">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+										<td>
+											<a href="" ng-click="editar(control)"><span class="glyphicon glyphicon-pencil"></span></a>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+					</div>
+				</div>
+				
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">{{tituloModal}}</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>{{mensajeModal}}</p>
+					<p>{{enlace}}</p>
+				  </div>
+				  <div class="modal-footer">
+					<button ng-show="botReg" ng-click="registra()" type="button" class="btn btn-default">Aceptar</button>
+					<button ng-show="botReg2" ng-click="modifica()" type="button" class="btn btn-default">Aceptar</button>
+					<button ng-show="botRea" ng-click="realiza()" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			<!-- Modal 2 -->
+			<div id="eliminaModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">Aviso</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>¿Estas seguro que quieres cambiar el estado a cancelado?</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="elimina()" data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</div>

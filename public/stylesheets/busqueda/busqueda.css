@@ -1,0 +1,24 @@
+.almomento{
+	border: 1px solid #bfbfbf;
+	margin: 10px;
+}
+
+h2{
+	padding: 0px;
+	margin: 0px;
+	color: black;
+}
+
+p{
+	color: black;
+}
+
+.cargar-mas{
+	background-color: #000;
+	color: white;
+	font-family: Arial;
+	font-weight: bold;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 13pt;
+}

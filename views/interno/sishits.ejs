@@ -1,0 +1,1861 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style=" height:100%;">
+				<a ui-sref="/">
+					<img style="padding-top:10px;" class="img-responsive" src="images/common/logo-globalWhite.png" alt="logo global">
+				</a>
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                	Sistema de Hits
+                </li>
+                <li>
+                    <a href="" ng-click="altaObjetivos()">Alta de objetivos Mensuales</a>
+                    <a href="" ng-click="graficaMen()">Objetivo Mensual</a>
+                    <a href="" ng-click="secciones()">Secciones</a>
+                    <a href="" ng-click="estaciones()">Estaciones</a>
+                    <!--<a href="" ng-click="programas()">Programas</a>-->
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-style="screenHeight">
+            <div class="container-fluid">
+                <div class="row">
+                	<!--******************************PROGRAMAS***********************************-->
+                	<div ng-if="progra" class="col-lg-12 card">
+                		<!--******************************ERIKA SALGADO***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">ERIKA SALGADO</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="prog1(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="prog_div1" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN ERIKA SALGADO***********************************-->
+                		<!--******************************NOTICIAS DE LA NOCHE***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">NOTICIAS DE LA NOCHE</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc2(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div2" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN NOTICIAS DE LA NOCHE***********************************-->
+                		<!--******************************IMAGEN INFORMATIVA***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">IMAGEN INFORMATIVA</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc3(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div3" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN IMAGEN INFORMATIVA***********************************-->
+                		<!--******************************A DETALLE***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">RADIOFORMULA</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc4(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div4" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN A DETALLE***********************************-->
+                		<!--******************************PAGINA WEB***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">PÁGINA WEB</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc5(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div5" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN PAGINA WEB***********************************-->
+					</div>
+
+                	<!--******************************ESTACIONES***********************************-->
+                	<div ng-if="esta" class="col-lg-12 card">
+                		<!--******************************RMX***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">RMX</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="esta1(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="esta_div1" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN RMX***********************************-->
+                		<!--******************************WFM***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">WFM</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc2(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div2" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN WFM***********************************-->
+                		<!--******************************IMAGEN***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">IMAGEN</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc3(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div3" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN IMAGEN***********************************-->
+                		<!--******************************FORMULA***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">RADIOFORMULA</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc4(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div4" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN FORMULA***********************************-->
+                		<!--******************************KEBUENA***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">KEBUENA</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc5(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div5" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN KEBUENA***********************************-->
+                		<!--******************************VIVECANAL***********************************-->
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">VIVECANAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc6(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div6" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales[mensuales.nombre].total}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="mensuales in mensu">{{mensuales.objetivos[0].investigaciones}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu">{{getCumpliS(mensuales, mensuales.objetivos[0].investigaciones)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+                		<!--******************************FIN VIVECANAL***********************************-->
+					</div>
+                	<!--******************************FIN PROGRAMAS***********************************-->
+					<div ng-if="mensuales" class="col-lg-12 card">
+						<div class="col-lg-12 card">
+							<div class="col-lg-12 card-header">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">OBJETIVO MENSUAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<select class="col-lg-5" ng-model="fecha.mes">
+									<option value="">--SELECCIONA EL MES--</option>
+									<option value="1">ENERO</option>
+									<option value="2">FEBRERO</option>
+									<option value="3">MARZO</option>
+									<option value="4">ABRIL</option>
+									<option value="5">MAYO</option>
+									<option value="6">JUNIO</option>
+									<option value="7">JULIO</option>
+									<option value="8">AGOSTO</option>
+									<option value="9">SEPTIEMBRE</option>
+									<option value="10">OCTUBRE</option>
+									<option value="11">NOVIEMBRE</option>
+									<option value="12">DICIEMBRE</option>
+								</select>
+								<select class="col-lg-5" ng-model="fecha.ano">
+									<option value="">--SELECCIONA EL AÑO--</option>
+									<option value="2016">2016</option>
+									<option value="2017">2017</option>
+								</select>
+								<button ng-click="graph(fecha)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="chart_div" class="chart">
+									
+								</div>
+							</div>
+						</div>
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">SECCIONES POR SEMANA FISCAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="graph2(dt1,dt2)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="chart_div2" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; " class="col-lg-10 col-lg-offset-1">
+								<h3>HITS TOTALES</h3>
+								<h5>{{hitTotales}}</h5>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu.objetivos">{{getObjetivos(objetivo)}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu"  ng-if="comparaKeys(mensuales)">{{getCumpli(mensu.objetivos,mensuales)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--**********************************************SECCIONES INVESTIGACIONES***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">INVESTIGACIONES ESPECIALES</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt1" is-open="popup1.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc1(dt1,dt2)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div1" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu1" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu1.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu1" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu1.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION INVESTIGACIONES****************************************-->
+					<!--**********************************************SECCIONES LOCAL***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">Local</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt3" is-open="popup3.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt4" is-open="popup4.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open4()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc2(dt3,dt4)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div2" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu2" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu2.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu2" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu2.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION LOCAL****************************************-->
+					<!--**********************************************SECCIONES DENUNCIA***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">DENUNCIA</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt5" is-open="popup5.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open5()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt6" is-open="popup6.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open6()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc3(dt5,dt6)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div3" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu3" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu3.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu3" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu3.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION DENUNCIA****************************************-->
+					<!--**********************************************SECCIONES NEGOCIOS***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">NEGOCIOS</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt7" is-open="popup7.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open7()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt8" is-open="popup8.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open8()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc4(dt7,dt8)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div4" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu4" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu4.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu4" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu4.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION NEGOCIOS****************************************-->
+					<!--**********************************************SECCIONES ESTADOS***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">ESTADOS</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt9" is-open="popup9.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open9()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt10" is-open="popup10.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open10()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc5(dt9,dt10)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div5" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu5" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu5.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu5" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu5.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION ESTADOS****************************************-->
+					<!--**********************************************SECCIONES NACIONAL***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">NACIONAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt11" is-open="popup11.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open11()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt12" is-open="popup12.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open12()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc6(dt11,dt12)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div6" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu6" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu6.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu6" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu6.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION NACIONAL****************************************-->
+					<!--**********************************************SECCIONES INTERNACIONAL***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">INTERNACIONAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt13" is-open="popup13.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open13()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt14" is-open="popup14.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open14()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc7(dt13,dt14)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div7" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu7" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu7.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu7" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu7.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION INTERNACIONAL****************************************-->
+					<!--**********************************************SECCIONES ACTUALIDAD***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">ACTUALIDAD</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt15" is-open="popup15.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open15()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt16" is-open="popup16.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open16()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc8(dt15,dt16)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div8" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu8" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu8.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu8" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu8.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION ACTUALIDAD****************************************-->
+					<!--**********************************************SECCIONES ESPECTACULOS***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">ESPECTACULOS</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt17" is-open="popup17.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open17()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt18" is-open="popup18.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open18()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc9(dt17,dt18)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div9" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu9" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu9.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu9" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu9.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION ESPECTACULOS****************************************-->
+					<!--**********************************************SECCIONES DEPORTES LOCAL***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">DEPORTES LOCAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt19" is-open="popup19.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open19()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt20" is-open="popup20.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open20()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc10(dt19,dt20)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div10" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu10" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu10.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu10" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu10.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION DEPORTES LOCAL****************************************-->					
+					<!--**********************************************SECCIONES DEPORTES NACIONAL***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">DEPORTES NACIONAL</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt23" is-open="popup23.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open23()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt24" is-open="popup24.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open24()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc13(dt23,dt24)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div13" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu13" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu13.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu13" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu13.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION DEPORTES****************************************-->
+					<!--**********************************************SECCIONES COLABORADORES***********************************-->
+					<div ng-if="seccs" class="col-lg-12 card">
+						<div style="margin-top:20px; background-color:white;" class="col-lg-12 card">
+							<div class="col-lg-12 card-header2">
+								<img src="images/interno/bar-graph.png" class="col-lg-1 img-responsive">
+								<h4 class="col-lg-8">COLABORADORES</h4>
+							</div>
+							<div class="col-lg-12" style="background-color:#fff;">
+								<div class="col-lg-4 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha inicial</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt21" is-open="popup21.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open21()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<div class="col-lg-4 col-lg-offset-1 input-group form-size" style="float:left;">
+									<span class="input-group-addon">Fecha final</span>
+									<p class="input-group">
+							          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt22" is-open="popup22.opened" close-text="Close" />
+							          <span class="input-group-btn">
+							            <button type="button" class="btn btn-default" ng-click="open22()"><i class="glyphicon glyphicon-calendar"></i></button>
+							          </span>
+							        </p>
+								</div>
+								<button ng-click="secc11(dt21,dt22)" class="col-lg-offset-1 btn btn-primary">Grafica</button>
+							</div>
+							<!--GRAFICO OBJETIVO GENERAL MENSUAL-->
+							<div style="padding:0px;" class="col-lg-12">
+								<div id="secc_div11" class="chart">
+									
+								</div>
+							</div>
+							<div style="padding:0px; margin-top:20px; " class="col-lg-10 col-lg-offset-1 table-responsive">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>ENERO</th>
+										<th>FEBRERO</th>
+										<th>MARZO</th>
+										<th>ABRIL</th>
+										<th>MAYO</th>
+										<th>JUNIO</th>
+										<th>JULIO</th>
+										<th>AGOSTO</th>
+										<th>SEPTIEMBRE</th>
+										<th>OCTUBRE</th>
+										<th>NOVIEMBRE</th>
+										<th>DICIEMBRE</th>
+									</tr>
+									<tr>
+										<td>Hits</td>
+										<td ng-repeat="mensuales in mensu12" ng-if="comparaKeys(mensuales)">{{mensuales.hits}}</td>
+									</tr>
+									<tr>
+										<td>Objetivos</td>
+										<td ng-repeat="objetivo in mensu12.objetivos">{{objetivo}}</td>
+									</tr>
+									<tr>
+										<td>Cumplimiento</td>
+										<td ng-repeat="mensuales in mensu12" ng-if="comparaKeys(mensuales)">{{getCumpliS(mensu12.objetivos,mensuales)}} %</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--***********************************END SECCION COLABORADORES****************************************-->
+				</div>
+					<!--ALTA DE OBJETIVOS MENSUALES-->
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="altaObje">
+						<h2 class="titulo">OBJETIVOS</h2>
+						<form ng-model="formBanner" name="formBanner" novalidate ng-submit="subeObjs(formBanner)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.estado.$invalid && !formBanner.estado.$pristine }">
+								<select ng-model="fecha.mes" required>
+									<option value="">--SELECCIONA EL MES--</option>
+									<option value="1">ENERO</option>
+									<option value="2">FEBRERO</option>
+									<option value="3">MARZO</option>
+									<option value="4">ABRIL</option>
+									<option value="5">MAYO</option>
+									<option value="6">JUNIO</option>
+									<option value="7">JULIO</option>
+									<option value="8">AGOSTO</option>
+									<option value="9">SEPTIEMBRE</option>
+									<option value="10">OCTUBRE</option>
+									<option value="11">NOVIEMBRE</option>
+									<option value="12">DICIEMBRE</option>
+								</select>
+								<p ng-show="formBanner.estado.$invalid && !formBanner.estado.$pristine" class="help-block">
+									Tienes que seleccionar un estado
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.secciones.$invalid && !formBanner.secciones.$pristine }">
+								<select ng-model="fecha.ano" required>
+									<option value="">--SELECCIONA EL AÑO--</option>
+									<option value="2016">2016</option>
+									<option value="2017">2017</option>
+								</select>
+								<p ng-show="formBanner.secciones.$invalid && !formBanner.secciones.$pristine" class="help-block">
+									Tienes que seleccionar una sección
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.inves.$invalid && !formBanner.inves.$pristine }">
+								<input class="form-control" type="number" placeholder="Investigacion especial" name="inves" ng-model="inves" required>
+								<p ng-show="formBanner.inves.$invalid && !formBanner.inves.$pristine" class="help-block">
+									El campo investigacion es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.local.$invalid && !formBanner.local.$pristine }">
+								<input class="form-control" type="number" placeholder="Local" name="local" ng-model="local" required>
+								<p ng-show="formBanner.local.$invalid && !formBanner.local.$pristine" class="help-block">
+									El campo Local es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.denuncia.$invalid && !formBanner.denuncia.$pristine }">
+								<input class="form-control" type="number" placeholder="Denuncia" name="denuncia" ng-model="denuncia" required>
+								<p ng-show="formBanner.denuncia.$invalid && !formBanner.denuncia.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.cola.$invalid && !formBanner.cola.$pristine }">
+								<input class="form-control" type="number" placeholder="Colaboradores" name="cola" ng-model="cola" required>
+								<p ng-show="formBanner.cola.$invalid && !formBanner.cola.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.negocios.$invalid && !formBanner.negocios.$pristine }">
+								<input class="form-control" type="number" placeholder="Negocios" name="negocios" ng-model="negocios" required>
+								<p ng-show="formBanner.negocios.$invalid && !formBanner.negocios.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.estados.$invalid && !formBanner.estados.$pristine }">
+								<input class="form-control" type="number" placeholder="Estados" name="estados" ng-model="estados" required>
+								<p ng-show="formBanner.estados.$invalid && !formBanner.estados.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.nacional.$invalid && !formBanner.nacional.$pristine }">
+								<input class="form-control" type="number" placeholder="Nacional" name="nacional" ng-model="nacional" required>
+								<p ng-show="formBanner.nacional.$invalid && !formBanner.nacional.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.internacional.$invalid && !formBanner.internacional.$pristine }">
+								<input class="form-control" type="number" placeholder="Internacional" name="internacional" ng-model="internacional" required>
+								<p ng-show="formBanner.internacional.$invalid && !formBanner.internacional.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.actualidad.$invalid && !formBanner.actualidad.$pristine }">
+								<input class="form-control" type="number" placeholder="Actulidad" name="actualidad" ng-model="actualidad" required>
+								<p ng-show="formBanner.actualidad.$invalid && !formBanner.actualidad.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.espectaculos.$invalid && !formBanner.espectaculos.$pristine }">
+								<input class="form-control" type="number" placeholder="Espectaculos" name="espectaculos" ng-model="espectaculos" required>
+								<p ng-show="formBanner.espectaculos.$invalid && !formBanner.espectaculos.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.deplocal.$invalid && !formBanner.deplocal.$pristine }">
+								<input class="form-control" type="number" placeholder="Deportes local" name="deplocal" ng-model="deplocal" required>
+								<p ng-show="formBanner.deplocal.$invalid && !formBanner.deplocal.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.depint.$invalid && !formBanner.depint.$pristine }">
+								<input class="form-control" type="number" placeholder="Deportes Internacional" name="depint" ng-model="depint" required>
+								<p ng-show="formBanner.depint.$invalid && !formBanner.depint.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.rmx.$invalid && !formBanner.rmx.$pristine }">
+								<input class="form-control" type="number" placeholder="RMX" name="rmx" ng-model="rmx" required>
+								<p ng-show="formBanner.rmx.$invalid && !formBanner.rmx.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.wfm.$invalid && !formBanner.wfm.$pristine }">
+								<input class="form-control" type="number" placeholder="WFM" name="wfm" ng-model="wfm" required>
+								<p ng-show="formBanner.wfm.$invalid && !formBanner.wfm.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.imagen.$invalid && !formBanner.imagen.$pristine }">
+								<input class="form-control" type="number" placeholder="Imagen" name="imagen" ng-model="imagen" required>
+								<p ng-show="formBanner.imagen.$invalid && !formBanner.imagen.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.formula.$invalid && !formBanner.formula.$pristine }">
+								<input class="form-control" type="number" placeholder="Formula" name="formula" ng-model="formula" required>
+								<p ng-show="formBanner.formula.$invalid && !formBanner.formula.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.kebuena.$invalid && !formBanner.kebuena.$pristine }">
+								<input class="form-control" type="number" placeholder="KEBUENA" name="kebuena" ng-model="kebuena" required>
+								<p ng-show="formBanner.kebuena.$invalid && !formBanner.kebuena.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.vivecanal.$invalid && !formBanner.vivecanal.$pristine }">
+								<input class="form-control" type="number" placeholder="ViveCanal" name="vivecanal" ng-model="vivecanal" required>
+								<p ng-show="formBanner.vivecanal.$invalid && !formBanner.vivecanal.$pristine" class="help-block">
+									El campo es necesario
+								</p>
+							</div>
+																					
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid" ng-class="{ 'desactivado' : formBanner.$invalid }" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>			
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</div>

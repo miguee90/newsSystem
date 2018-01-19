@@ -1,0 +1,143 @@
+<header>
+	<ng-include src="'views/includes/headerMenu.ejs'"></ng-include>
+</header>
+<main>
+	<div class="container-fluid">
+		<div class="row" pegaesnoticia ng-if="false">
+			<div class="hidden-sm hidden-xs col-lg-10 col-lg-offset-1 es-noticia">
+				<b>Es Noticia:</b>
+				<ul>
+					<a href="#"><li>{{esNoticia[esNoticia.length-1]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-2]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-3]}}</li></a>
+					<a href="#"><li>{{esNoticia[esNoticia.length-4]}}</li></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--BARRA PROGRAMATICA-->
+	<div class="container-fluid">
+		<div class="row" style="margin-top:10px;" pegabarra ng-if="false">
+			<div class="col-xs-12 col-sm-12 col-lg-10 col-lg-offset-1" style="padding:0px;">
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<div class="col-xs-12 col-sm-12 col-lg-6 da-clic" style="padding:0px;">
+						<p>DA CLICK AQUÍ</p>
+						<p class="sintoniza">SINTONIZANOS</p>
+					</div>
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 principales-prog" ng-style="progPrincipales">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 formula-prog" style="padding:0px;" ng-style="progFormula">
+					</div></a>
+					<a ui-sref="pop"><div class="col-xs-12 col-sm-12 col-lg-6 exa-prog" style="padding:0px;" ng-style="progPop">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="imagen"><div class="col-xs-12 col-sm-12 col-lg-6 imagen-prog" style="padding:0px;" ng-style="progImagen">
+					</div></a>
+					<a ui-sref="hundred"><div class="col-xs-12 col-sm-12 col-lg-6 hundred-prog" style="padding:0px;" ng-style="progHundred">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="kebuena"><div class="col-xs-12 col-sm-12 col-lg-6 kebuena-prog" style="padding:0px;" ng-style="progKebuena">
+					</div></a>
+					<a ui-sref="ViveCanal"><div class="col-xs-12 col-sm-12 col-lg-6 vivecanal-prog" style="padding:0px;" ng-style="progVive">
+					</div></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top:30px;">
+		<div class="col-lg-12 denun">
+			<div class="col-lg-3 col-lg-offset-1">
+				<img style="margin-top:80px;" class="img-responsive" alt="logo denuncia global" src="images/common/logo-denuncia.png">
+				<h3 class="col-lg-6 fuente"><b>(444) 422-0115</b></h3><img class="col-lg-3 img-responsive" alt="whats icon" src="images/common/whats-icon.png">
+				<h3 class="no-marpad col-lg-12">{{video.titulo}}</h3>
+				<p class="no-marpad col-lg-12">{{video.descripcion}}</p>
+			</div>
+			<div class="col-lg-7">
+				<h4 class="texto-denun">#DENUNCIAGLOBAL</h4>
+				
+				<iframe style="margin-top:50px;" class="col-lg-11 col-lg-offset-1" width="400" height="410" ng-src="{{trustSrc(video.url)}}" frameborder="0" allowfullscreen></iframe>
+				
+				<slick style="margin-top:40px;" class="col-lg-12" dots="true" infinite="false" speed="300" slides-to-show="4" touch-move="false" slides-to-scroll="1" init-onload=true data="playlist">
+					<div ng-click="change(video)" ng-repeat="video in playlist" class="element-slide">
+						<img class="img-responsive" alt="vista previa" ng-src="http://img.youtube.com/vi/{{getId(video.url)}}/0.jpg">
+						<h5><b>{{video.titulo}}</b></h5>
+					</div>
+				</slick>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row">
+				<div class="col-lg-8">
+					<h2 class="bode-inf" style="margin-top:30px;">TODAS LAS DENUNCIAS</h2>
+					<a ui-sref="noticia({id:investigaciones[0].nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:30px;">
+							<img class="img-responsive" alt="principal" ng-src="images/multimedia/{{investigaciones[0].imagen.imgSeccionF}}">
+							<h2 class="col-lg-12">{{investigaciones[0].nota.titulo}}</h2>
+							<p class="col-lg-12">{{investigaciones[0].nota.resumen}}</p>
+						</div>
+					</a>
+					<a ui-sref="noticia({id:investigaciones[1].nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<div class="col-lg-7">
+								<h2 style="text-align:right;" >{{investigaciones[1].nota.titulo}}</h2>
+							</div>
+							<img class="col-lg-5 img-responsive" alt="principal" ng-src="images/multimedia/{{investigaciones[1].imagen.imgSeccionF}}">
+							<p class="col-lg-12" style="text-align:justify;">{{investigaciones[1].nota.resumen}}</p>
+						</div>
+					</a>
+					<a ui-sref="noticia({id:investigaciones[2].nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<img class="col-lg-5 img-responsive" alt="principal" ng-src="images/multimedia/{{investigaciones[2].imagen.imgSeccionF}}">
+							<div class="col-lg-7">
+								<h2>{{investigaciones[2].nota.titulo}}</h2>
+							</div>
+							<p class="col-lg-12">{{investigaciones[2].nota.resumen}}</p>
+						</div>
+					</a>
+
+					<!--NOTAS EXTRAS-->
+					<a ng-repeat="nota in notasMas" ui-sref="noticia({id: nota.alias})">
+						<div class="col-lg-12 bode-inf" style="margin-top:20px;">
+							<img class="col-lg-5 img-responsive" alt="principal" ng-src="images/multimedia/{{nota.imagenes.imgSeccionF}}">
+							<div class="col-lg-7">
+								<h2>{{nota.titulo}}</h2>
+							</div>
+							<p>{{nota.resumen}}</p>
+						</div>
+					</a>
+					<div class="row">
+						<a href="" ng-click="cargaMas()">
+							<div class="col-lg-6 col-lg-offset-6 cargar-mas">
+								<p style="margin-top:15px; text-align:center; color:white;">CARGAR MÁS CONTENIDO</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="col-lg-12 almomento">
+						<h4 style="border-bottom: 1px solid #bfbfbf;">AL MOMENTO</h4>
+						<a ui-sref="noticia({id:nota.alias})" ng-repeat="nota in almomento">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#fea53f;">{{nota.fecha_inicio | date:' HH:mm'}}</span> {{nota.resumen}}</p>
+						</a>
+					</div>
+					<div class="col-lg-12">
+						<twitter-timeline>
+							<a class="twitter-timeline" data-height="500" href="https://twitter.com/Denuncia_Global">
+								Tweets by Denuncia_Global
+							</a>
+						</twitter-timeline>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<footer>
+	<ng-include src="'views/includes/footer.ejs'"></ng-include>
+</footer>

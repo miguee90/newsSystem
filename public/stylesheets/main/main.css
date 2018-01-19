@@ -1,0 +1,408 @@
+a{
+	color: black;
+}
+.es-noticia{
+	background-color: #fff200;
+	height: 30px;
+	margin-top: 5px;
+}
+
+.es-noticia ul li{
+   list-style: none;
+	padding-left: 10px;
+}
+.es-noticia ul li:before{
+   content: '';
+   display: inline-block;
+   height: 17px;;
+   width: 17px;
+   background-image: url('../../images/common/vineta.png');
+	background-size: cover;
+	margin-right: 10px;
+}
+
+
+.es-noticia b{
+	float: left;
+	font-size: 14pt;
+	margin-top: 5px;
+	margin-left: 40px;
+}
+
+.es-noticia ul a li{
+	float: left;
+	margin: 5px 20px 0px 30px;
+	font-size: 14pt;
+	font-family: Arial;
+}
+
+.da-clic{
+	background-color: #d4d4d4;
+	height:40px;
+	-webkit-clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+	clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.da-clic p{
+	color: #001544;
+	text-align: center;
+	font-weight: bold;
+	margin: 3px 0px 0px 0px;	
+}
+
+.sintoniza{
+	color: #001544;
+	font-weight: bold;
+	font-size: 6pt;
+	text-align: center;
+	margin: 0px;
+}
+
+.nota-uno{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.tittle-uno{
+	font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important;
+	color:black;
+	margin: 20px;
+	font-size: 22pt;
+	font-weight: bold;
+}
+
+.resumen-uno{
+	color: black;
+	margin: 15px;
+	text-align: justify;
+}
+
+.bode-inf{
+   border-bottom: 1px solid #bfbfbf;
+}
+
+.tittle-dos{
+	font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif!important;
+	color:black;
+	margin: 30px;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.tittle-tres{
+	font-family:"Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif!important;
+	color:black;
+	margin-top: 30px;
+	font-size: 17pt;
+	font-weight: bold;
+}
+
+.resumen-tres{
+	color: black;
+	margin-top: 30px;
+	text-align: justify;
+}
+
+.mas-destacado{
+	background-color: #b019a7;
+	margin-top: 20px;
+}
+.tactica{
+	background-color: #2f78b7;
+	margin: 10px;
+}
+
+.tittle-destacado{
+	margin-top: 5px;
+	margin-bottom: 2px;
+	color: white;
+	font-size: 18pt;
+	font-family: Bebas,"Segoe UI", "Helvetica", Arial, sans-serif !important;
+}
+
+.almomento{
+	border: 1px solid #bfbfbf;
+	margin: 0px;
+}
+
+.almomento p{
+	margin-top: 20px;
+	padding-bottom: 20px;
+}
+
+.nota-bordes{
+	padding: 0px;
+	margin: 10px;
+}
+
+.tittle-der{
+	font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important;
+	font-weight: bold;
+	font-size: 15pt;
+}
+
+.nacional{
+	background-color: #49577d;
+	margin: 10px;
+}
+
+.internacional{
+	background-color: #194672;
+	margin: 10px;
+}
+
+.farandula{
+	background-color: #701e75;
+	margin: 10px;
+}
+
+.expertos{
+	background-color: #015383;
+	margin: 10px;
+}
+
+.banner-derecho{
+	height: 600px;
+	padding:0px;
+	margin: 10px;
+}
+
+.banner-derecho2{
+	height: 400px;
+	padding:0px;
+	margin-left: 10px;
+}
+
+.miniD {
+	height: 220px;
+    overflow: hidden;
+    position: relative;
+	margin-bottom: 26px;
+	margin-left: 10px;
+}
+
+.denuncia-global{
+	height: 550px;
+	background-color: #1381cc;
+	margin-top: 30px;
+}
+
+.denuncia-global p:nth-child(3){
+	color: white;
+	font-family: Ubuntu;
+	font-size: 18pt;
+	margin-top: 10px;
+}
+
+.denuncia-global p:nth-child(4){
+	color: white;
+	font-family: Ubuntu;
+	font-size: 10pt;
+}
+
+.denuncia-logo{
+	margin-top: 20px;
+}
+
+.vermas{
+	color:white; 
+	font-family: Ubuntu;
+	text-align:right;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.vivecanal{
+	background-image: url(../../images/common/vivecanal.jpg);
+	background-size: 100% 100%;
+	height: 550px;
+	overflow: hidden;
+  	position: relative;
+	margin-top: 20px;
+	padding-top: 47px;
+    padding-left: 16%;
+}
+
+.reproductor {
+	margin-top: 30px;
+    padding-right: 40px;
+}
+
+.tam-video{
+	width: 100%;
+	height: 197px;
+}
+
+.investigacion{
+	width: 100%;
+	margin-top: 30px;
+	padding: opx;
+}
+
+.seccion{
+	height: 230px;
+	margin-top: 20px;
+	background-color: #e8e8e8;
+}
+
+.seccion h2{
+	color: #fff;
+	font-family: Bebas,"Segoe UI", "Helvetica", Arial, sans-serif !important;
+	font-size: 24pt;
+	margin: 0px;
+}
+
+.title-secc{
+	text-decoration:none;
+	margin: 0px;
+	padding: 0px;
+	background-color: #fff;
+}
+
+.prog-noti{
+	height: 340px;
+	background-color: #090d4a;
+	color: white;
+	font-family: Georgia,Times,"Times New Roman",serif!important;
+}
+
+.prog-noti h2{
+	color: white;
+	font-family: Georgia,Times,"Times New Roman",serif!important;
+	font-size: 40pt;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.sombras{
+	color: #4b4b4b;
+	font-family: Bebas,"Segoe UI", "Helvetica", Arial, sans-serif !important;
+}
+
+.alinea{
+	text-align:right;
+}
+
+@media screen and (max-width: 768px) {
+    .da-clic{
+		background-color: #d4d4d4;
+		height:40px;
+		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+	}
+
+	.principales-prog{
+		background-image: url(../../images/estaciones/principales/default40.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		-webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		margin: 5px 0px 0px 0px;
+	}
+
+	.formula-prog{
+		background-image: url(../../images/estaciones/formula/defaultformula.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		-webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		margin: 5px 0px 0px 0px;
+	}
+
+	.exa-prog{
+		background-image: url(../../images/estaciones/exa/defaultrmx.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		-webkit-clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+		clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+		margin: 5px 0px 0px 0px;
+	}
+	.imagen-prog{
+		background-image: url(../../images/estaciones/imagen/defaultimagen.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		-webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		margin: 5px 0px 0px 0px;
+	}
+	.hundred-prog{
+		background-image: url(../../images/estaciones/hundred/default1001.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		-webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		margin: 5px 0px 0px 0px;
+	}
+
+	.kebuena-prog{
+		background-image: url(../../images/estaciones/kebuena/defaultkebuena.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		margin:15px 0px 0px -48px;
+		-webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+		margin: 5px 0px 0px 0px;
+	}
+
+	.vivecanal-prog{
+		background-image: url(../../images/estaciones/vivecanal/defaultvive.jpg);
+		background-size:100% 95%;
+		height: 60px;
+		-webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0 100%);
+		clip-path: polygon(0% 0, 100% 0, 100% 100%, 0 100%);
+		margin: 5px 0px 0px 0px;
+	}
+
+	.tittle-uno{
+		font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important;
+		color:black;
+		margin: 0px 20px 20px 20px;
+		font-size: 18pt;
+		font-weight: bold;
+	}
+	.tittle-tres{
+		font-family:"Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif!important;
+		color:black;
+		margin-top: 0px;
+		font-size: 17pt;
+		font-weight: bold;
+	}
+
+	.home-movil{
+		position: relative;
+		top: -150px;
+		left: 0px;
+	}
+
+	.home-titles{
+		position: relative;
+		top:350px;
+		left: 0px;
+		text-align: left !important;
+	}
+
+	.alinea{
+		text-align:left;
+	}
+
+	.tittle-dos{
+		font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif!important;
+		color:black;
+		margin: 15px 15px 0px 5px;
+		font-size: 14pt;
+		font-weight: bold;
+	}
+
+	.resumen-uno{
+		margin: 0px 15px 0px 5px;
+		text-align: left;
+	}
+}
+
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+    
+}
+
+@media screen and (min-width: 1221px) {
+    
+}

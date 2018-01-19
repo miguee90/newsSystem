@@ -1,0 +1,557 @@
+<header>
+	<ng-include src="'views/includes/headerMenu.ejs'"></ng-include>
+</header>
+<main>
+	<div class="container-fluid" ng-if="false">
+		<div class="row" pegaesnoticia>
+			<div class="hidden-sm hidden-xs col-lg-10 col-lg-offset-1 es-noticia">
+				<b>Es Noticia:</b>
+				<ul>
+					<a ui-sref="busqueda({id:esNoticia[esNoticia.length-1], pag:1})"><li>{{esNoticia[esNoticia.length-1]}}</li></a>
+					<a ui-sref="busqueda({id:esNoticia[esNoticia.length-2], pag:1})"><li>{{esNoticia[esNoticia.length-2]}}</li></a>
+					<a ui-sref="busqueda({id:esNoticia[esNoticia.length-3], pag:1})"><li>{{esNoticia[esNoticia.length-3]}}</li></a>
+					<a ui-sref="busqueda({id:esNoticia[esNoticia.length-4], pag:1})"><li>{{esNoticia[esNoticia.length-4]}}</li></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!--BARRA PROGRAMATICA-->
+	<div class="container-fluid hidden-sm hidden-xs" ng-if="false">
+		<div class="row" style="margin-top:10px;" pegabarra>
+			<div class="col-xs-12 col-sm-12 col-lg-10 col-lg-offset-1 no-fondo" style="padding:0px;">
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<div class="col-xs-12 col-sm-12 col-lg-6 da-clic" style="padding:0px;">
+						<p>DA CLICK AQUÍ</p>
+						<p class="sintoniza">SINTONIZANOS</p>
+					</div>
+					<a ui-sref="los40"><div class="col-xs-12 col-sm-12 col-lg-6 principales-prog" ng-style="progPrincipales">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="formula"><div class="col-xs-12 col-sm-12 col-lg-6 formula-prog" style="padding:0px;" ng-style="progFormula">
+					</div></a>
+					<a ui-sref="pop"><div class="col-xs-12 col-sm-12 col-lg-6 exa-prog" style="padding:0px;" ng-style="progPop">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="imagen"><div class="col-xs-12 col-sm-12 col-lg-6 imagen-prog" style="padding:0px;" ng-style="progImagen">
+					</div></a>
+					<a ui-sref="hundred"><div class="col-xs-12 col-sm-12 col-lg-6 hundred-prog" style="padding:0px;" ng-style="progHundred">
+					</div></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-3" style="padding:0px;">
+					<a ui-sref="kebuena"><div class="col-xs-12 col-sm-12 col-lg-6 kebuena-prog" style="padding:0px;" ng-style="progKebuena">
+					</div></a>
+					<a ui-sref="ViveCanal"><div class="col-xs-12 col-sm-12 col-lg-6 vivecanal-prog" style="padding:0px;" ng-style="progVive">
+					</div></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--CONTENIDO DE TODA LA PÄGINA PRINCIPAL-->
+	<div class="row">
+		<!--SECCION IZQUIERDA PÁGINA PRINCIPAL-->
+		<div class="col-lg-5 col-lg-offset-1">
+			<a ui-sref="noticiaId({alias:portada.uno.alias,id: portada.uno.idNotas})">
+				<div class="row bode-inf">
+					<img class="col-lg-12 nota-uno" alt="notaPrincipal" ng-src="images/multimedia/{{portada.imguno[0].imagenPortada}}">
+					<p class="tittle-uno">{{portada.uno.titulo}}</p>
+					<p class="resumen-uno">{{portada.uno.resumen}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:portada.dos.alias, id:portada.dos.idNotas})">
+				<div class="row bode-inf">
+					<img style="margin:40px 0px 20px 0px;" class="col-lg-5" alt="notaSecundaria" ng-src="images/multimedia/{{portada.imgdos[0].imagenPortada}}">
+					<div class="col-lg-7">
+						<p class="tittle-tres">{{portada.dos.titulo}}</p>
+						<p class="resumen-tres">{{portada.dos.resumen}}</p>
+					</div>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:portada.tres.alias,id:portada.tres.idNotas})">
+				<div class="row bode-inf">
+					<div class="col-lg-7 home-titles">
+						<p class="tittle-tres alinea">{{portada.tres.titulo}}</p>
+						<p class="resumen-tres alinea">{{portada.tres.resumen}}</p>
+					</div>
+					<img style="margin:20px 0px; 20px 0px" class="col-lg-5 home-movil" alt="notaSecundaria" ng-src="images/multimedia/{{portada.imgtres[0].imagenPortada}}">
+				</div>
+			</a>
+			<div class="row bode-inf">
+				<a ui-sref="noticiaId({alias:portada.cuatro.alias,id:portada.cuatro.idNotas})">
+					<div class="col-lg-6">
+						<img class="nota-uno img-responsive" alt="notaPrincipal" ng-src="images/multimedia/{{portada.imgcuatro[0].imgSeccionF}}">
+						<p class=" tittle-dos">{{portada.cuatro.titulo}}</p>
+						<p class="resumen-uno">{{portada.cuatro.resumen}}</p>
+					</div>
+				</a>
+				<a ui-sref="noticiaId({alias:portada.cinco.alias, id:portada.cinco.idNotas})">
+					<div class="col-lg-6">
+						<img class="nota-uno img-responsive" alt="notaPrincipal" ng-src="images/multimedia/{{portada.imgcinco[0].imgSeccionF}}">
+						<p class=" tittle-dos">{{portada.cinco.titulo}}</p>
+						<p class="resumen-uno">{{portada.cinco.resumen}}</p>
+					</div>
+				</a>
+			</div>
+			<div class="row bode-inf">
+				<a ui-sref="InvestigacionEspecial">
+					<div style="padding:0px; margin-top:50px; margin-bottom:30px;" class="col-lg-12">
+						<img style="padding:0px;" class="col-lg-12 img-responsive" alt="trafico san luis" src="images/common/especial.jpg">
+					</div>
+				</a>
+			</div>
+			<!--DENUNCIA GLOBAL-->
+			<div class="hidden-sm hidden-xs row bode-inf">
+				<div class="col-lg-12 denuncia-global">
+					<img class="col-lg-10 col-lg-offset-1 denuncia-logo img-responsive" alt="denuncia logo" src="images/common/denuncia-logo.jpg">
+					<iframe style="margin-top:50px;" class="col-lg-10 col-lg-offset-1" width="400" height="260" ng-src="{{trustSrc(videoDenuncia.url)}}" frameborder="0" allowfullscreen></iframe>
+					<p class="col-lg-10 col-lg-offset-1">{{videoDenuncia.titulo}}</p>
+					<p class="col-lg-10 col-lg-offset-1">{{videoDenuncia.descripcion}}</p>
+				</div>
+				<div class="col-lg-12" style="background-color:#282627; margin-bottom:30px;">
+					<a ui-sref="Denuncia"><p class="vermas">VER MAS >></p></a>
+				</div>
+			</div>
+			<!--REPRODUCTOR VIVECANAL-->
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-lg-12 vivecanal">
+					<vjs-video-container class="col-lg-11 col-xs-12 col-sm-12 reproductor">
+					  <video class="video-js vjs-default-skin vjs-big-play-centered tam-video"
+						  controls preload="auto" poster="multimedia/img/logo-global.png">
+						 <source src="http://38.96.148.213:1935/vivecanaltest/myStream.sdp/playlist.m3u8" type='application/x-mpegURL' />
+						 <source src="rtmp://38.96.148.213:1935/vivecanaltest/myStream.sdp" type='video/sdp' />
+					  </video>
+					</vjs-video-container>
+					<a ui-sref="ViveCanal" class="col-lg-12 slider-medio">
+						
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--SECCION DERECHA PÁGINA PRINCIPAL-->
+		<div class="col-lg-5">
+			<div class="row">
+				<div class="col-lg-12 mas-destacado">
+					<h3 class="tittle-destacado">LO MÁS DESTACADO</h3>
+				</div>
+			</div>
+			<div class="row">
+				<a ui-sref="noticiaId({alias:destacados[0].nota.alias,id:destacados[0].nota.idNotas})">
+					<div class="col-lg-4">
+						<img class="nota-uno img-responsive" alt="notaPrincipal" ng-src="images/multimedia/{{destacados[0].img[0].imagenPortada}}">
+						<p><b>{{destacados[0].nota.titulo}}</b></p>
+					</div>
+				</a>
+				<a ui-sref="noticiaId({alias:destacados[1].nota.alias,id:destacados[1].nota.idNotas})">
+					<div class="col-lg-4">
+						<img class="nota-uno img-responsive" alt="notaPrincipal" ng-src="images/multimedia/{{destacados[1].img[0].imagenPortada}}">
+						<p><b>{{destacados[1].nota.titulo}}</b></p>
+					</div>
+				</a>
+				<a ui-sref="noticiaId({alias:destacados[2].nota.alias,id:destacados[2].nota.idNotas})">
+					<div class="col-lg-4">
+						<img class="nota-uno img-responsive" alt="notaPrincipal" ng-src="images/multimedia/{{destacados[2].img[0].imagenPortada}}">
+						<p><b>{{destacados[2].nota.titulo}}</b></p>
+					</div>
+				</a>
+			</div>
+			<div class="row">
+				<div class="col-lg-9 ">
+					<div class="col-lg-12 almomento">
+						<h4 style="border-bottom: 1px solid #bfbfbf;">AL MOMENTO</h4>
+						<a ui-sref="noticiaId({alias:almomento[0].alias,id:almomento[0].idNotas})">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#fea53f;">{{almomento[0].fecha_inicio | date:' HH:mm'}}</span> {{almomento[0].titulo}}</p>
+						</a>
+						<a ui-sref="noticiaId({alias:almomento[1].alias,id:almomento[1].idNotas})">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#8375b4;">{{almomento[1].fecha_inicio | date:' HH:mm'}}</span> {{almomento[1].titulo}}</p>
+						</a>
+						<a ui-sref="noticiaId({alias:almomento[2].alias,id:almomento[2].idNotas})">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#8375b4;">{{almomento[2].fecha_inicio | date:' HH:mm'}}</span> {{almomento[2].titulo}}</p>
+						</a>
+						<a ui-sref="noticiaId({alias:almomento[3].alias,id:almomento[3].idNotas})">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#8375b4;">{{almomento[3].fecha_inicio | date:' HH:mm'}}</span> {{almomento[3].titulo}}</p>
+						</a>
+						<a ui-sref="noticiaId({alias:almomento[4].alias,id:almomento[4].idNotas})">
+							<p style="border-bottom: 1px solid #bfbfbf;"><span style="color:#8375b4;">{{almomento[4].fecha_inicio | date:' HH:mm'}}</span> {{almomento[4].titulo}}</p>
+						</a>
+					</div>
+				</div>
+				<!--ESPACIO BANNERS VERTICALES-->
+				<div class="col-lg-3 ">
+					<div class="col-lg-12 banner-derecho2 hidden-sm hidden-xs">
+						<a ng-repeat="slide in slidesIM" ng-href="http://{{slide.hyperlink}}">
+							<img class="slide slide-animation full-img" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex2($index2)">
+						</a>
+
+						<a class="arrow prev" href="" ng-click="nextSlide2()"></a>
+
+						<a class="arrow next" href="" ng-click="prevSlide2()"></a>
+
+						<nav class="navz">
+							<div class="wrapper">
+								<ul class="dots">
+								<li class="dot" ng-repeat="slide in slidesIM">
+									<a href="#" ng-class="{'active':isCurrentSlideIndex2($index2)}"
+									   ng-click="setCurrentSlideIndex2($index2);">
+									</a>
+								</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!--INTERNO IZQUIERDA-->
+				<div class="col-lg-9">
+					<div class="col-lg-12 tactica">
+						<a ui-sref="Tactica"><h3 class="tittle-destacado">TÁCTICA</h3></a>
+					</div>
+					<a ui-sref="noticiaId({alias:tactica.nota.alias,id: tactica.nota.idNotas})">
+						<div class="col-lg-12 nota-bordes bode-inf">
+							<img alt="deportes" class="img-responsive" ng-src="images/multimedia/{{tactica.imagen.imgSeccionF}}">
+							<p class="tittle-der">{{tactica.nota.titulo}}</p>
+							<p style="font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif!important; margin-bottom:20px;">{{tactica.nota.resumen}}</p>
+						</div>
+					</a>
+					<div class="col-lg-12 nacional">
+						<a ui-sref="Nacional"><h3 class="tittle-destacado">NACIONAL</h3>
+					</div>
+					<a ui-sref="noticiaId({alias:nacional.nota.alias, id: nacional.nota.idNotas})">
+						<div class="col-lg-12 nota-bordes bode-inf">
+							<img alt="nacional" class="img-responsive" ng-src="images/multimedia/{{nacional.imagen.imgSeccionF}}">
+							<p class="tittle-der">{{nacional.nota.titulo}}</p>
+							<p style="font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important; margin-bottom:20px;">{{nacional.nota.resumen}}</p>
+						</div>
+					</a>
+					<div class="col-lg-12 internacional">
+						<a ui-sref="Internacional"><h3 class="tittle-destacado">INTERNACIONAL</h3></a>
+					</div>
+					<a ui-sref="noticiaId({alias:internacional.nota.alias,id:internacional.nota.idNotas})">
+						<div class="col-lg-12 nota-bordes bode-inf">
+							<img alt="internacional" class="img-responsive" ng-src="images/multimedia/{{internacional.imagen.imgSeccionF}}">
+							<p class="tittle-der">{{internacional.nota.titulo}}</p>
+							<p style="font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important; margin-bottom:20px;">{{internacional.nota.resumen}}</p>
+						</div>
+					</a>
+					<div class="col-lg-12 farandula">
+						<a ui-sref="Farandula"><h3 class="tittle-destacado">FARANDÚLA</h3></a>
+					</div>
+					<a ui-sref="noticiaId({alias:farandula.nota.alias,id:farandula.nota.idNotas})">
+						<div class="col-lg-12 nota-bordes bode-inf">
+							<img alt="internacional" class="img-responsive" ng-src="images/multimedia/{{farandula.imagen.imgSeccionF}}">
+							<p class="tittle-der">{{farandula.nota.titulo}}</p>
+							<p style="font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important; margin-bottom:20px;">{{farandula.nota.resumen}}</p>
+						</div>
+					</a>
+					<!--SECCION DE EXPERTOS-->
+					<div class="col-lg-12 expertos">
+						<h3 class="tittle-destacado">EXPERTOS</h3>
+					</div>
+					<a ui-sref="colaboradores({id:experto.nota.alias})" ng-repeat="experto in expertos">
+						<div class="col-lg-12 col-xs-12 col-sm-12 nota-bordes bode-inf">
+							<div class="col-lg-8 col-sm-8 col-xs-8">
+								<p class="tittle-der" style="font-size:11pt;">{{experto.nota.titulo}}</p>
+								<p style="font-family: "Segoe UI","Frutiger Linotype", "Dejavu Sans", "Helvetica", Arial, sans-serif !important; margin-bottom:20px;">{{experto.seccion.nombre}}</p>
+							</div>
+							<div class="col-lg-4 col-sm-4 col-xs-4">
+								<img style="margin-bottom:10px;" alt="internacional" class="img-responsive" ng-src="images/multimedia/colaboradores/imgmini_{{experto.nota.idsecciones}}.jpg">
+							</div>
+						</div>
+					</a>
+				</div>
+				<!--INTERNO DERECHA-->
+				<div class="col-xs-8 col-sm-8 col-lg-3" style="margin-top:10px;">
+					<div class=" col-lg-12 banner-derecho hidden-sm hidden-xs" >
+						<img alt="internacional" class="full-img" ng-src="{{slidesD[0].path.substr(6)}}">
+					</div>
+					<div class="col-lg-12 banner-derecho hidden-sm hidden-xs" >
+						<img alt="internacional" class="full-img" ng-src="{{slidesD[2].path.substr(6)}}">
+					</div>
+					
+					<div class="col-xs-8 col-sm-8 col-lg-12 miniD hidden-sm hidden-xs">
+						<a ng-repeat="slide in slidesD1" ng-href="http://{{slide.hyperlink}}">
+							<img class="slide slide-animation full-img" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex3($index3)">
+						</a>
+
+						<a class="arrow prev" href="" ng-click="nextSlide3()"></a>
+
+						<a class="arrow next" href="" ng-click="prevSlide3()"></a>
+
+						<nav class="navz">
+							<div class="wrapper">
+								<ul class="dots">
+								<li class="dot" ng-repeat="slide in slidesD1">
+									<a href="#" ng-class="{'active':isCurrentSlideIndex3($index3)}"
+									   ng-click="setCurrentSlideIndex3($index3);">
+									</a>
+								</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-lg-12 miniD hidden-sm hidden-xs">
+						<a ng-repeat="slide in slidesD2" ng-href="http://{{slide.hyperlink}}">
+							<img class="slide slide-animation full-img" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex4($index4)">
+						</a>
+
+						<a class="arrow prev" href="" ng-click="nextSlide4()"></a>
+
+						<a class="arrow next" href="" ng-click="prevSlide4()"></a>
+
+						<nav class="navz">
+							<div class="wrapper">
+								<ul class="dots">
+								<li class="dot" ng-repeat="slide in slidesD2">
+									<a href="#" ng-class="{'active':isCurrentSlideIndex4($index4)}"
+									   ng-click="setCurrentSlideIndex4($index4);">
+									</a>
+								</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-lg-12 miniD hidden-sm hidden-xs">
+						<a ng-repeat="slide in slidesD3" ng-href="http://{{slide.hyperlink}}">
+							<img class="slide slide-animation full-img" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex5($index5)">
+						</a>
+
+						<a class="arrow prev" href="" ng-click="nextSlide5()"></a>
+
+						<a class="arrow next" href="" ng-click="prevSlide5()"></a>
+
+						<nav class="navz">
+							<div class="wrapper">
+								<ul class="dots">
+								<li class="dot" ng-repeat="slide in slidesD3">
+									<a href="#" ng-class="{'active':isCurrentSlideIndex5($index5)}"
+									   ng-click="setCurrentSlideIndex5($index5);">
+									</a>
+								</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-lg-12 miniD hidden-sm hidden-xs">
+						<a ng-repeat="slide in slidesD4" ng-href="http://{{slide.hyperlink}}">
+							<img class="slide slide-animation full-img" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex6($index6)">
+						</a>
+
+						<a class="arrow prev" href="" ng-click="nextSlide6()"></a>
+
+						<a class="arrow next" href="" ng-click="prevSlide6()"></a>
+
+						<nav class="navz">
+							<div class="wrapper">
+								<ul class="dots">
+								<li class="dot" ng-repeat="slide in slidesD4">
+									<a href="#" ng-class="{'active':isCurrentSlideIndex6($index6)}"
+									   ng-click="setCurrentSlideIndex6($index6);">
+									</a>
+								</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--SECCIONES-->
+	<div class="row hidden-sm hidden-xs">
+		<div class="col-lg-10 col-lg-offset-1 seccion" style="padding:0px;">
+			<a class="col-lg-12 title-secc" style="border-bottom: 5px solid #194672;" ui-sref="Internacional"><h2 class="col-lg-2" style="background-color:#194672;">INTERNACIONAL</h2></a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:notasInternacionalP.nota.alias,id:notasInternacionalP.nota.idNotas})" class="col-lg-6">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="col-lg-7 img-responsive" style="padding:0px;" alt="internacional 1" ng-src="images/multimedia/{{notasInternacionalP.imagen.imgSeccionF}}">
+					<p class="col-lg-5" style="font-size:17pt;">{{notasInternacionalP.nota.titulo}}</p>
+				</div>
+			</a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:nota.nota.alias,id:nota.nota.idNotas})" class="col-lg-2" ng-repeat="nota in notasInternacional">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-size:12pt;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-10 col-lg-offset-1 seccion" style="padding:0px;">
+			<a class="col-lg-12 title-secc" style="border-bottom: 5px solid #680e3b;" ui-sref="Seguridad"><h2 class="col-lg-2" style="background-color:#680e3b;">SEGURIDAD</h2></a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:notasSeguridadP.nota.alias, id: notasSeguridadP.nota.idNotas})" class="col-lg-6">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="col-lg-7 img-responsive" style="padding:0px;" alt="internacional 1" ng-src="images/multimedia/{{notasSeguridadP.imagen.imgSeccionF}}">
+					<p class="col-lg-5" style="font-size:17pt;">{{notasSeguridadP.nota.titulo}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:nota.nota.alias, id:nota.nota.idNotas})" style="text-decoration:none;" class="col-lg-2" ng-repeat="nota in notasSeguridad">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-size:12pt;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-10 col-lg-offset-1 seccion" style="padding:0px;">
+			<a class="col-lg-12 title-secc" style="border-bottom: 5px solid #49577d;" ui-sref="Nacional"><h2 class="col-lg-2" style="background-color:#49577d;">NACIONAL</h2></a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:notasNacionalP.nota.alias, id:notasNacionalP.nota.idNotas})" class="col-lg-6">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="col-lg-7 img-responsive" style="padding:0px;" alt="internacional 1" ng-src="images/multimedia/{{notasNacionalP.imagen.imgSeccionF}}">
+					<p class="col-lg-5" style="font-size:17pt;">{{notasNacionalP.nota.titulo}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:nota.nota.alias, id:nota.nota.idNotas})" style="text-decoration:none;" class="col-lg-2" ng-repeat="nota in notasNacional">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-size:12pt;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-10 col-lg-offset-1 seccion" style="padding:0px;">
+			<a class="col-lg-12 title-secc" style="border-bottom: 5px solid #2f78b7;" ui-sref="Tactica"><h2 class="col-lg-2" style="background-color:#2f78b7;">TÁCTICA</h2></a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:notasTacticaP.nota.alias,id:notasTacticaP.nota.idNotas})" class="col-lg-6">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="col-lg-7 img-responsive" style="padding:0px;" alt="internacional 1" ng-src="images/multimedia/{{notasTacticaP.imagen.imgSeccionF}}">
+					<p class="col-lg-5" style="font-size:17pt;">{{notasTacticaP.nota.titulo}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:nota.nota.alias, id:nota.nota.idNotas})" style="text-decoration:none;" class="col-lg-2" ng-repeat="nota in notasTactica">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-size:12pt;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-10 col-lg-offset-1 seccion" style="padding:0px;">
+			<a class="col-lg-12 title-secc" style="border-bottom: 5px solid #8a7b36;" ui-sref="Negocios"><h2 class="col-lg-2" style="background-color:#8a7b36;">NEGOCIOS</h2></a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:notasNegociosP.nota.alias, id:notasNegociosP.nota.idNotas})" class="col-lg-6">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="col-lg-7 img-responsive" style="padding:0px;" alt="internacional 1" ng-src="images/multimedia/{{notasNegociosP.imagen.imgSeccionF}}">
+					<p class="col-lg-5" style="font-size:17pt;">{{notasNegociosP.nota.titulo}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:nota.nota.alias, id:nota.nota.idNotas})" style="text-decoration:none;" class="col-lg-2" ng-repeat="nota in notasNegocios">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-size:12pt;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-10 col-lg-offset-1 seccion" style="padding:0px;">
+			<a class="col-lg-12 title-secc" style="border-bottom: 5px solid #6d6d6d;" ui-sref="Estados"><h2 class="col-lg-2" style="background-color:#6d6d6d;">ESTADOS</h2></a>
+			<a style="text-decoration:none;" ui-sref="noticiaId({alias:notasEstadosP.nota.alias, id:notasEstadosP.nota.idNotas})" class="col-lg-6">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="col-lg-7 img-responsive" style="padding:0px;" alt="internacional 1" ng-src="images/multimedia/{{notasEstadosP.imagen.imgSeccionF}}">
+					<p class="col-lg-5" style="font-size:17pt;">{{notasEstadosP.nota.titulo}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticiaId({alias:nota.nota.alias, id:nota.nota.idNotas})" style="text-decoration:none;" class="col-lg-2" ng-repeat="nota in notasEstados">
+				<div style="padding:18px 0px 15px 0px;" class="sombras">
+					<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+					<p style="font-size:12pt;">{{nota.nota.titulo}}</p>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<!--
+	<div style="margin-top:30px;" class="hidden-sm hidden-xs row" ng-if="noche">
+		<div class="col-lg-10 col-lg-offset-1 prog-noti">
+			<a class="arrow prev" href="" ng-click="nocheprev()"></a>
+			<a class="arrow next" style="margin-right: 20px;" href="" ng-click="nochenext()"></a>
+			<div class="col-lg-8">
+				<h2>NOTICIAS DE LA NOCHE CON HÉCTOR TREJO</h2>
+				<a ng-repeat="nota in notasNoche" ui-sref="noticia({id:nota.nota.alias})">
+					<div style="padding:18px 5px 15px 13px;" class="col-lg-4">
+						<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+						<p style="font-weight:bold; font-family: Arial; color:white;">{{nota.nota.titulo}}</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4" style="height:100%;">
+				<img style="margin-top:10px;" alt="noiticias de la noche" src="images/common/hector.png">
+			</div>
+		</div>
+	</div>
+
+	<div style="margin-top:30px;" class="row hidden-sm hidden-xs" ng-if="adetalle">
+		<div class="col-lg-10 col-lg-offset-1 prog-noti">
+			<a class="arrow prev" href="" ng-click="adetalleprev()"></a>
+			<a class="arrow next" style="margin-right: 20px;" href="" ng-click="adetallenext()"></a>
+			<div class="col-lg-8">
+				<h2>A DETALLE CON CLAUDIO GARCÍA</h2>
+				<a ng-repeat="nota in notasAdetalle" ui-sref="noticia({id:nota.nota.alias})">
+					<div style="padding:18px 5px 15px 13px;" class="col-lg-4">
+						<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+						<p style="font-weight:bold; font-familiy:Arial; color:white;">{{nota.nota.titulo}}</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4" style="height:100%;">
+				<img style="margin-top:10px;" alt="noiticias de la noche" src="images/common/adetalle.png">
+			</div>
+		</div>
+	</div>
+
+	<div style="margin-top:30px;" class="row hidden-sm hidden-xs" ng-if="reporte">
+		<div class="col-lg-10 col-lg-offset-1 prog-noti">
+			<a class="arrow prev" href="" ng-click="reporteprev()"></a>
+			<a class="arrow next" style="margin-right: 20px;" href="" ng-click="reportenext()"></a>
+			<div class="col-lg-8">
+				<h2>IMAGEN INFORMATIVA CON EVA MARÍA</h2>
+				<a ng-repeat="nota in notasReporte" ui-sref="noticia({id:nota.nota.alias})">
+					<div style="padding:18px 5px 15px 13px;" class="col-lg-4">
+						<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+						<p style="font-weight:bold; font-familiy:Arial; color:white;">{{nota.nota.titulo}}</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4" style="height:100%;">
+				<img style="margin-top:10px;" alt="noiticias de la noche" src="images/common/reporte.png">
+			</div>
+		</div>
+	</div>
+	<div style="margin-top:30px;" class="row hidden-sm hidden-xs" ng-if="formula">
+		<div class="col-lg-10 col-lg-offset-1 prog-noti">
+			<a class="arrow prev" href="" ng-click="formulaprev()"></a>
+			<a class="arrow next" style="margin-right: 20px;" href="" ng-click="formulanext()"></a>
+			<div class="col-lg-8">
+				<h2>ERIKA SALGADO</h2>
+				<a ng-repeat="nota in notasFormula" ui-sref="noticia({id:nota.nota.alias})">
+					<div style="padding:18px 5px 15px 13px;" class="col-lg-4">
+						<img class="img-responsive" alt="internacional 1" ng-src="images/multimedia/{{nota.imagen.imgSeccionF}}">
+						<p style="font-weight:bold; font-familiy:Arial; color:white;">{{nota.nota.titulo}}</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4" style="height:100%;">
+				<img style="margin-top:10px;" alt="noiticias de la noche" src="images/common/formula.png">
+			</div>
+		</div>
+	</div>-->
+
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1 slider">
+				<a ng-repeat="slide in slidesInf" ng-href="http://{{slide.hyperlink}}"><img class="slide slide-animation img-responsive" ng-src="{{slide.path.substr(6)}}" ng-if="!isCurrentSlideIndex8($index8)"></a>
+
+				<a class="arrow prev" href="" ng-click="nextSlide8()"></a>
+			
+				<a class="arrow next" href="" ng-click="prevSlide8()"></a>
+
+				<nav class="navz">
+					<div class="wrapper">
+						<ul class="dots">
+						<li class="dot" ng-repeat="slide in slidesInf">
+							<a href="#" ng-class="{'active':isCurrentSlideIndex8($index8)}"
+							   ng-click="setCurrentSlideIndex8($index8);">
+							</a>
+						</li>
+						</ul>
+					</div>
+				</nav>
+
+		</div>
+	</div>
+</main>
+<footer>
+	<ng-include src="'views/includes/footer.ejs'"></ng-include>
+</footer>

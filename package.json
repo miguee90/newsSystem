@@ -1,0 +1,46 @@
+{
+  "name": "webGlobal",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-google-maps": "^2.4.0",
+    "angular-touch": "^1.5.8",
+    "angular-ui-bootstrap": "^2.2.0",
+    "angular-ui-router": "^0.3.1",
+    "angulartics": "^1.3.0",
+    "angulartics-google-analytics": "^0.4.0",
+    "body-parser": "~1.15.1",
+    "bootstrap": "^3.3.7",
+    "checklist-model": "^0.10.0",
+    "connect-flash": "^0.1.1",
+    "connect-multiparty": "^2.0.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "express-session": "^1.14.1",
+    "fcm-push": "^1.1.2",
+    "jquery": "^3.1.0",
+    "lodash": "^4.16.4",
+    "mongoose": "^4.5.10",
+    "morgan": "~1.7.0",
+    "ng-file-upload": "^12.2.8",
+    "ng-table": "^3.0.1",
+    "node-gyp": "^3.4.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "prerender-node": "^2.7.0",
+    "serve-favicon": "~2.3.0",
+    "sharp": "^0.16.2",
+    "slick-carousel": "^1.6.0",
+    "textangular": "^1.5.12"
+  },
+  "devDependencies": {
+    "video.js": "^5.11.7"
+  }
+}

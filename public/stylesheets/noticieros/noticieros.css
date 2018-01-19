@@ -1,0 +1,53 @@
+.almomento{
+	border: 1px solid #bfbfbf;
+	margin: 10px;
+}
+
+h2{
+	padding: 0px;
+	margin: 0px;
+	color: black;
+}
+
+p{
+	color: black;
+}
+
+.cargar-mas{
+	background-color: #000;
+	color: white;
+	font-family: Arial;
+	font-weight: bold;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 13pt;
+}
+
+.contenedor{
+	margin-top: 30px;
+	height: 50px;
+	background-color:black;
+	padding: 0px;
+}
+
+.indicador{
+	background-color: red;
+	color: white;
+	height: 100%;
+	font-size: 15pt;
+	font-weight: bold;
+	padding: 10px 0px 0px 20px;
+}
+
+.tit-noti{
+	color: white;
+	height: 100%;
+	font-size: 10pt;
+	padding: 16px 0px 0px 20px;
+	border-right: 2px solid white;
+}
+
+.espacio{
+	height: 700px;
+	background-size: cover;
+}

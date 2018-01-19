@@ -1,0 +1,178 @@
+<div>
+	<div class="row">
+		<div class="col-lg-2 col-lg-offset-1 banner-vertical"></div>
+		
+		<div class="col-lg-6" style="margin-top:30px;">
+
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.uno">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara1.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.dos">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara2.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.tres">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara3.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.cuatro">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara4.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.cinco">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara5.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.seis">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara6.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.siete">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara7.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.ocho">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara8.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<vjs-video-container class="reproductor" vjs-ratio="16:9" ng-if="camaras.nueve">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered" width="650px" height="370px" 
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				<source src="rtmp://38.96.148.213:1935/CamarasGlobal/Camara9.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+			<div class="col-lg-12" ng-if="camaras.diez">
+				<img class="img-responsive" src="images/camaras/proximamente-web.jpg">
+			</div>
+			<div class="col-lg-12" ng-if="camaras.once">
+				<img class="img-responsive" src="images/camaras/proximamente-web.jpg">
+			</div>
+			<div class="col-lg-12" ng-if="camaras.doce">
+				<img class="img-responsive" src="images/camaras/proximamente-web.jpg">
+			</div>
+			<div class="row">
+				<div class="col-lg-11 back-importantes">
+					<p class="news-text2">NOTICIAS IMPORTANTES</p>
+				</div>
+			</div>
+			<div class="row" style="margin-top:30px;">
+				<a ui-sref="noticia({id:importantes.uno.alias})">
+					<div class="col-lg-4">
+						<img alt="portada uno" class="img-responsive" ng-src="images/multimedia/{{importantes.imguno[0].imgSeccionF}}">
+						<h4 style="font-family:Arial; text-align:justify;">{{importantes.uno.titulo}}</h4>
+						<p style="font-family:Arial; text-align:justify;">{{importantes.uno.resumen}}</p>
+					</div>
+				</a>
+				<a ui-sref="noticia({id:importantes.dos.alias})">
+					<div class="col-lg-4">
+						<img alt="portada uno" class="img-responsive" ng-src="images/multimedia/{{importantes.imgdos[0].imgSeccionF}}">
+						<h4 style="font-family:Arial; text-align:justify;">{{importantes.dos.titulo}}</h4>
+						<p style="font-family:Arial; text-align:justify;">{{importantes.dos.resumen}}</p>
+					</div>
+				</a>
+				<a ui-sref="noticia({id:importantes.tres.alias})">
+					<div class="col-lg-4">
+						<img alt="portada uno" class="img-responsive" ng-src="images/multimedia/{{importantes.imgtres[0].imgSeccionF}}">
+						<h4 style="font-family:Arial; text-align:justify;">{{importantes.tres.titulo}}</h4>
+						<p style="font-family:Arial; text-align:justify;">{{importantes.tres.resumen}}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		
+		<div class="col-lg-2 banner-vertical"></div>
+	</div>
+	
+	<!--AREA DEL SLIDER-->
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="carrusel">
+				<a href="" class="navigation previous">&lsaquo;</a>
+				<a href="" class="navigation next">&rsaquo;</a>
+
+				<ul>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:1})">
+							<div class="numero"><p class="centrar">1</p></div>
+							<div class="poligono">Av. Salvador Nava / Chapultepec</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:2})">
+							<div class="numero"><p class="centrar">2</p></div>
+							<div class="poligono">Av. Salvador Nava / Chapultepec</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:3})">
+							<div class="numero"><p class="centrar">3</p></div>
+							<div class="poligono">Av. Salvador Nava</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:4})">
+							<div class="numero"><p class="centrar">4</p></div>
+							<div class="poligono">Av. Salvador Nava</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:5})">
+							<div class="numero"><p class="centrar">5</p></div>
+							<div class="poligono">Salvador Nava / Carretera 57</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:6})">
+							<div class="numero"><p class="centrar">6</p></div>
+							<div class="poligono">Carretera 57 / Calle Granate</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:7})">
+							<div class="numero"><p class="centrar">7</p></div>
+							<div class="poligono">Carretera 57 / Calle Granate</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:8})">
+							<div class="numero"><p class="centrar">8</p></div>
+							<div class="poligono">Carretera 57 / Eje 102</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="Trafico.Reproduce({id:9})">
+							<div class="numero"><p class="centrar">9</p></div>
+							<div class="poligono">Carretera 57 / Eje 102</div>
+							<div style="height: 150px;"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

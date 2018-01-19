@@ -1,0 +1,47 @@
+<header>
+	<ng-include src="'views/includes/headerMenu.ejs'"></ng-include>
+</header>
+<main>
+	<div class="row">
+		<div class="col-sm-12 col-xs-12 col-lg-12 vive">
+			<vjs-video-container class="col-lg-11 reproductor">
+			  <video class="video-js vjs-default-skin vjs-big-play-centered tam-video"
+				  controls preload="auto" poster="multimedia/img/logo-global.png">
+				 <source src="http://38.96.148.213:1935/vivecanaltest/myStream.sdp/playlist.m3u8" type='application/x-mpegURL' />
+				 <source src="rtmp://38.96.148.213:1935/vivecanaltest/myStream.sdp" type='video/sdp' />
+			  </video>
+			</vjs-video-container>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<a ui-sref="noticia({id:notas[0].nota.alias})">
+				<div class="col-lg-4" style="margin-top:40px;">
+					<img class="img-responsive" alt="nota" ng-src="images/multimedia/{{notas[0].imagen.imgSeccionF}}">
+					<p style="text-align:right;">{{notas[0].nota.fecha_inicio | date:'yyyy-MM-dd HH:mm'}}</p>
+					<h3>{{notas[0].nota.titulo}}</h3>
+					<p>{{notas[0].nota.resumen}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticia({id:notas[1].nota.alias})">
+				<div class="col-lg-4" style="margin-top:40px;">
+					<img class="img-responsive" alt="nota" ng-src="images/multimedia/{{notas[1].imagen.imgSeccionF}}">
+					<p style="text-align:right;">{{notas[1].nota.fecha_inicio | date:'yyyy-MM-dd HH:mm'}}</p>
+					<h3>{{notas[1].nota.titulo}}</h3>
+					<p>{{notas[1].nota.resumen}}</p>
+				</div>
+			</a>
+			<a ui-sref="noticia({id:notas[2].nota.alias})">
+				<div class="col-lg-4" style="margin-top:40px;">
+					<img class="img-responsive" alt="nota" ng-src="images/multimedia/{{notas[2].imagen.imgSeccionF}}">
+					<p style="text-align:right;">{{notas[2].nota.fecha_inicio | date:'yyyy-MM-dd HH:mm'}}</p>
+					<h3>{{notas[2].nota.titulo}}</h3>
+					<p>{{notas[2].nota.resumen}}</p>
+				</div>
+			</a>
+		</div>
+	</div>
+</main>
+<footer>
+	<ng-include src="'views/includes/footer.ejs'"></ng-include>
+</footer>

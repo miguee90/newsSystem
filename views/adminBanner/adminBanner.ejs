@@ -1,0 +1,261 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12" id="encabezado">
+			<div class="col-lg-3" style=" height:100%;">
+				<a ui-sref="/"><img class="img-responsive" src="images/common/logo_global2.png" alt="logo global"></a>
+			</div>
+			<div class="user-logged col-lg-offset-6 col-lg-2">
+				<p>Hola {{nombre}}</p>
+			</div>
+			<div class="col-lg-1">
+				<a ng-href="#" ng-click="logout()"><span class="logout glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                	Administrador de Banners
+                </li>
+                <li>
+                    <a href="" ng-click="nuevoB()">Nuevo Banner</a>
+                </li>
+                <li>
+                    <a href="" ng-click="nuevoG()">Nuevo Grupo</a>
+                </li>
+                <li>
+                    <a href="" ng-click="listB()">Lista de Banners</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-style="screenHeight">
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formNuevoG">
+						<h2 class="titulo">Subir Nuevo Grupo</h2>
+						<form ng-model="formGrupo" name="formGrupo" novalidate ng-submit="subeGrupo(formGrupo)">
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formGrupo.nombreG.$invalid && !formGrupo.nombreG.$pristine }">
+								<input class="form-control" type="text" placeholder="Nombre del Grupo" name="nombreG" ng-model="nombreG" required>
+								<p ng-show="formGrupo.nombreG.$invalid && !formGrupo.nombreG.$pristine" class="help-block">
+									El campo nombre es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formGrupo.altoG.$invalid && !formGrupo.altoG.$pristine }">
+								<input class="form-control" type="number" placeholder="Alto" name="altoG" ng-model="altoG" required>
+								<p ng-show="formGrupo.altoG.$invalid && !formGrupo.altoG.$pristine" class="help-block">
+									Tienes que especificar el alto del grupo de banners
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formGrupo.anchoG.$invalid && !formGrupo.anchoG.$pristine }">
+								<input class="form-control" type="number" placeholder="Ancho" name="anchoG" ng-model="anchoG" required>
+								<p ng-show="formGrupo.anchoG.$invalid && !formGrupo.anchoG.$pristine" class="help-block">
+									Tienes que especificar el ancho del grupo de bannners.
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<textarea class="form-control" placeholder="Descripción" name="desc" ng-model="desc" cols="40" rows="5"></textarea>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formGrupo.fecha_finG.$invalid && !formGrupo.fecha_finG.$pristine }">
+								<span class="input-group-addon">Fecha Final</span>
+								<input class="form-control" type="date" name="fecha_finG" ng-model="fecha_finG" required>
+								<p ng-show="formGrupo.fecha_finG.$invalid && !formGrupo.fecha_finG.$pristine" class="help-block">
+									Tienes que seleccionar una fecha final
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formGrupo.$invalid" ng-class="{ 'desactivado' : formGrupo.$invalid}" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formNuevoB">
+						<h2 class="titulo">Subir Nuevo Banner</h2>
+						<form ng-model="formBanner" name="formBanner" novalidate ng-submit="subeBanner(formBanner)">
+							<div class="col-lg-10 col-lg-offset-1">
+								<file-field class="subearchivo" preview="previewImage" name="uploadFile" ng-model="uploadFile">
+									Sube imagen
+								</file-field>
+								<img class="preview" ng-src="{{previewImage}}">
+								{{uploadFile.name}}
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.nombreB.$invalid && !formBanner.nombreB.$pristine }">
+								<input class="form-control" type="text" placeholder="Nombre del Banner" name="nombreB" ng-model="nombreB" required>
+								<p ng-show="formBanner.nombreB.$invalid && !formBanner.nombreB.$pristine" class="help-block">
+									El campo nombre es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.link.$invalid && !formBanner.link.$pristine }">
+								<span class="input-group-addon">http://</span>
+								<input class="form-control" type="text" placeholder="Página a enlazar" name="link" ng-model="link" required>
+								<p ng-show="formBanner.link.$invalid && !formBanner.link.$pristine" class="help-block">
+									El campo enlace es necesario
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.selectGroup.$invalid && !formBanner.selectGroup.$pristine }">
+								<select name="selectGroup" id="selectGroup"
+								  ng-options="option.group_name for option in data.availableOptions track by option._id"
+								  ng-model="data.selectedOption" required>
+									<option value="">--Selecciona un grupo--</option>
+								</select>
+								<p ng-show="formBanner.selectGroup.$invalid && !formBanner.selectGroup.$pristine" class="help-block">
+									Tienes que seleccionar un grupo
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.alto.$invalid && !formBanner.alto.$pristine }">
+								<input class="form-control" type="number" placeholder="Alto" name="alto" ng-model="alto" required>
+								<p ng-show="formBanner.alto.$invalid && !formBanner.alto.$pristine" class="help-block">
+									Tienes que especificar el alto de banner
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.ancho.$invalid && !formBanner.ancho.$pristine }">
+								<input class="form-control" type="number" placeholder="Ancho" name="ancho" ng-model="ancho" required>
+								<p ng-show="formBanner.ancho.$invalid && !formBanner.ancho.$pristine" class="help-block">
+									Tienes que especificar el ancho de banner
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<input class="form-control" type="text" placeholder="Tags" name="tags" ng-model="tags">
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.fecha_ini.$invalid && !formBanner.fecha_ini.$pristine }">
+								<span class="input-group-addon">Fecha Inicial</span>
+								<input class="form-control" type="date" name="fecha_ini" ng-model="fecha_ini" required>
+								<p ng-show="formBanner.fecha_ini.$invalid && !formBanner.fecha_ini.$pristine" class="help-block">
+									Tienes que seleccionar una fecha inicial
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.fecha_fin.$invalid && !formBanner.fecha_fin.$pristine }">
+								<span class="input-group-addon">Fecha Final</span>
+								<input class="form-control" type="date" name="fecha_fin" ng-model="fecha_fin" required>
+								<p ng-show="formBanner.fecha_fin.$invalid && !formBanner.fecha_fin.$pristine" class="help-block">
+									Tienes que seleccionar una fecha final
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size" ng-class="{ 'has-error' : formBanner.selTipo.$invalid && !formBanner.selTipo.$pristine }">
+								<select name="selTipo" ng-model="selTipo" required>
+									<option value="">--Selecciona el tipo de banner--</option>
+									<option value="1">Suspendido</option>
+									<option value="2">Rotación</option>
+									<option value="3">Fijo</option>
+								</select>
+								<p ng-show="formBanner.selTipo.$invalid && !formBanner.selTipo.$pristine" class="help-block">
+									Tienes que seleccionar un tipo de banner
+								</p>
+							</div>
+							<div class="col-lg-10 col-lg-offset-1 input-group form-size">
+								<button class="button-save" type="submit" ng-disabled="formBanner.$invalid || uploadFile==null" ng-class="{ 'desactivado' : formBanner.$invalid || uploadFile==null}" data-toggle="modal" data-target="#myModal">
+									Guardar
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-lg-10 col-lg-offset-1 formularios" ng-if="formList">
+						<h2 class="titulo">Banners</h2>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Imp.</th>
+										<th>Clicks</th>
+										<th>C.T.R.</th>
+										<th>Fecha inicial</th>
+										<th>Fecha final</th>
+										<th>Tipo</th>
+										<th>Grupo</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="banner in arrayBanners">
+										<td>{{banner.name}}</td>
+										<td>{{banner.impressions}}</td>
+										<td>{{banner.clicks}}</td>
+										<td>0</td>
+										<td>{{banner.date_s | date:'yyyy-MM-dd'}}</td>
+										<td>{{banner.date_e | date:'yyyy-MM-dd'}}</td>
+										<td>{{banner.type}}</td>
+										<td>{{banner.g_id[0].group_name}}</td>
+										<td>
+											<a href="" ng-click="elegido(banner)" data-toggle="modal" data-target="#eliminaModal">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+										<td>
+											<a href="" ng-click="watch(banner.path)"><span class="glyphicon glyphicon-eye-open"></span></a>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+					</div>
+				</div>
+				
+			<div class="row smoke" ng-show="galeria">
+				<div class="flota">
+					<img class="logo" ng-src={{imagenPago}} alt="imagen Banner">
+					<button ng-click="closeGalerie()" class="btn btn-danger">Cerrar</button>
+				</div>
+			</div>
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">{{tituloModal}}</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>{{mensajeModal}}</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			<!-- Modal 2 -->
+			<div id="eliminaModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img class="img-responsive" alt="logoGlobal" src="images/common/logo_global.png"> 
+					<h3 class="modal-title">Advertencia</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>¿Estas seguro que quieres eliminar este banner?</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="elimina()" data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+	
+</div>

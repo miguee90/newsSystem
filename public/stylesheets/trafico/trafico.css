@@ -1,0 +1,358 @@
+h1, h2, h3, h4, h5, p{
+	color:black;
+	padding: 0px;
+	margin: 0px;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+/*IMAGE SLIDER*/
+.sliderTrafic {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    border: 20px solid #FFF;
+}
+
+
+.bannerS {
+	height: 161px;
+	padding-left: 2px;
+}
+
+.menuCams {
+	background-color: #ececec;
+	height: 50px;
+	padding: 15px;
+}
+
+.botonMosaico {
+	background-color: #89cf91;
+	height: 50px;
+	padding: 10px;
+}
+
+.botonMosaico:hover{
+	background-color: #77bc80;
+}
+
+.textoHeader {
+	color: black;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15pt;
+	font-weight: bold;
+}
+
+.texto-menu {
+	color: black;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 8pt;
+	text-align: center;
+	font-weight: bold;
+	margin-top: -5px;
+}
+
+.texto-menu2 {
+	color: black;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 9pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.mosaico-logo {
+	width: 28%;
+	height: 100%;
+	display: block;
+	float: left;
+}
+
+.texto-verde {
+	color: black;
+	text-align: center;
+}
+
+.texto-verde2 {
+	color: black;
+	text-align: center;
+}
+
+.marker {
+	height: 35px;
+	width: 35px;
+	display: block;
+	float: left;
+	margin-top: -5px;
+}
+
+.menu-cams {
+	padding: 0px 0px 0px 0px;
+}
+
+
+.menu-cams div{
+	padding: 7px;
+}
+
+.menu-cams a div:hover{
+	background-color: #b8baba;
+}
+
+.menu-cams div p {
+	color: black;
+	text-align: center;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.menu-cams div p:nth-child(2) {
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.menu-cams div p:nth-child(3) {
+	font-size: 6pt;
+}
+
+.angular-google-map-container { 
+	height: 620px; 
+}
+.back-img {
+	background-image: url("../multimedia/img/back-news.jpg");
+	padding: 15px;
+}
+
+p{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	color: black;
+}
+
+.news-text {
+	font-weight: bold;
+	margin-bottom: 0px !important;
+	font-size: 24pt;
+}
+
+.seccs_cont-map {
+	width:260px; 
+	height:246px;  
+	float:left;
+}
+
+.angular-google-map-container { 
+	height: 550px; 
+}
+
+
+
+.mosaico-item {
+	height: 200px !important;
+	background-size:     cover;
+}
+
+.poligono-mosaico {
+	-webkit-clip-path: polygon(32% 0, 100% 0%, 100% 100%, 0 100%);
+	clip-path: polygon(32% 0, 100% 0%, 100% 100%, 0 100%);
+	width: 80%;
+    height: 18%;
+    height: 18%;
+    background-color: rgba(4, 58, 82, 0.7);
+    position: relative;
+    top: -40px;
+    left: 20%;
+    color: white;
+    padding-top: 13px;
+    padding-left: 50px;
+	font-size:7pt;
+}
+
+
+.numero {
+	background: #043a52;
+	width: 40px;
+	height: 40px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	margin: 5px;
+	-webkit-box-shadow: 0 6px 7px 0 rgba(0,0,0,0.8);
+	-moz-box-shadow: 0 6px 7px 0 rgba(0,0,0,0.8);
+	box-shadow: 0 6px 7px 0 rgba(0,0,0,0.8);
+	color: white !important;
+	text-align: center;
+	font-size: 21pt;
+	font-weight: bold;
+}
+
+.centrar {
+	padding-top: 5px;
+	color: white !important;
+}
+
+.banner-vertical {
+	height: 722px;
+    margin-top: 30px;
+	background-image: url('../../images/camaras/bannerlat1.jpg');
+	background-size: 100% 100%;
+}
+
+.back-importantes {
+	background-image: url("../../images/camaras/back-news2.jpg");
+	background-size: cover;
+	padding: 15px;
+	margin: 20px;
+}
+
+.news-text2 {
+	font-weight: bold;
+	margin-bottom: 0px !important;
+	font-size: 22pt;
+}
+
+/*********************************CAROUSEL***************************/
+#carrusel {
+    margin:0px 0px 20px 0px;
+    overflow:hidden;
+    padding:0;
+    position:relative;
+    width:auto;
+}
+
+/* navigation items */
+#carrusel .navigation {
+    background:rgba(0,0,0,0.1);
+    color:rgba(0,0,0,0.1);
+    display:block;
+    font-family:verdana,sans-serif;
+    font-size:4em;
+    height: 90%;
+    margin-top: 14px;
+    width: 50px;
+    padding-top:90px;
+    position:absolute;
+    text-align:center;
+    text-shadow:rgba(0,0,0,0.1); 0 0 2px;
+    width:50px;
+    -moz-transition:all 0.4s;
+    -ms-transition:all 0.4s;
+    -webkit-transition:all 0.4s;
+    -o-transition:all 0.4s;
+    transition:all 0.4s;
+}
+
+#carrusel:hover .navigation {
+    background:rgba(0,0,0,0.3);
+    color:#000;
+    text-shadow:rgba(0,0,0,0.7); 0 0 2px;
+}
+
+#carrusel .navigation:hover {
+    background:rgba(0,0,0,0.5);
+}
+
+#carrusel .previous {
+    left:0;
+}
+
+#carrusel .next {
+    right:0;
+}
+
+/* carrusel container */
+#carrusel ul {
+    -moz-box-orient:horizontal;
+    -ms-box-orient:horizontal;
+    -webkit-box-orient:horizontal;
+    -o-box-orient:horizontal;
+    box-orient:horizontal;
+
+    display:-moz-box;
+    display:-ms-box;
+    display:-webkit-box;
+    display:-o-box;
+    display:box;
+    
+    list-style-type:none;
+    margin:15px;
+    margin-left:-200px;
+    padding:0;
+}
+
+/* standard width and height for the carrusel items */
+#carrusel li {
+    height:240px;
+    margin-right:10px;
+    width:300px;
+}
+
+/* animation properties for the carrusel */
+.animate ul {
+    -moz-transition:margin 1s;
+    -ms-transition:margin 1s;
+    -webkit-transition:margin 1s;
+    -o-transition:margin 1s;
+    transition:margin 1s;
+}
+
+/* different color for each of our items */
+#carrusel li:nth-child(1) {
+	background-image: url('../../images/camaras/citadella1.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(2) {
+	background-image: url('../../images/camaras/citadella2.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(3) {
+	background-image: url('../../images/camaras/global1.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(4) {
+    background-image: url('../../images/camaras/global2.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(5) {
+    background-image: url('../../images/camaras/carr57.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(6) {
+    background-image: url('../../images/camaras/hsalud1.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(7) {
+    background-image: url('../../images/camaras/hsalud2.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(8) {
+    background-image: url('../../images/camaras/ibis1.jpg');
+	background-size:cover;
+}
+
+#carrusel li:nth-child(9) {
+    background-image: url('../../images/camaras/ibis2.jpg');
+	background-size:cover;
+}
+
+.poligono {
+	-webkit-clip-path: polygon(32% 0, 100% 0%, 100% 100%, 0 100%);
+	clip-path: polygon(32% 0, 100% 0%, 100% 100%, 0 100%);
+	width: 82%;
+    height: 20%;
+    background-color: rgba(4, 58, 82, 0.7);
+    position: relative;
+    top: -45px;
+    left: 18%;
+    color: white;
+    padding-top: 13px;
+    padding-left: 59px;
+}

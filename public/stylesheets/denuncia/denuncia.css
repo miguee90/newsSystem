@@ -1,0 +1,50 @@
+h1, h2, h3, h4, h5, p{
+	color:black;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+.denun{
+	background-color: #1381cc;
+	height: 800px;
+}
+
+.fuente{
+	font-family: Harabara;
+	font-size: 16pt;
+	padding: 0px;
+}
+
+.no-marpad{
+	padding: 0px;
+}
+
+.texto-denun{
+	font-family: Harabara;
+	font-size: 14pt;
+	text-align: right;
+	margin-top: 30px;
+}
+
+.element-slide{
+	margin-right: 10px;
+}
+
+.almomento{
+	border: 1px solid #bfbfbf;
+	margin-top: 60px;
+}
+
+.cargar-mas{
+	background-color: #000;
+	color: white;
+	font-family: Arial;
+	font-weight: bold;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 13pt;
+}
